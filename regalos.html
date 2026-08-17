@@ -143,16 +143,10 @@
                             <i class="fa fa-print"></i> Descargar o imprimir tu notita
                         </button>
                         <p class="nota-descargar-hint">
-                            Aquí tienes tu notita 💛 — descárgala o imprímela si prefieres entregárnosla en persona
-                            el día de la boda. En la entrada vas a encontrar sobres por si los necesitas.
+                            Si prefieres entregarnos tu regalo en persona, nos encantará recibirlo. Puedes imprimir
+                            tu notita y llevarla contigo, tendremos un lugar especial para colocarlo durante la
+                            celebración.
                         </p>
-                    </div>
-
-                    <!-- Solo esto se ve al imprimir/guardar como PDF (ver @media print) -->
-                    <div id="nota-imprimible">
-                        <p class="nota-imprimible-titulo">Para Pau y Alan 💛</p>
-                        <p class="nota-imprimible-texto" id="nota-imprimible-texto"></p>
-                        <p class="nota-imprimible-autor" id="nota-imprimible-autor"></p>
                     </div>
 
                     <p class="cross-promo">Psst, ¿ya confirmaste tu asistencia? <a href="index.html#rsvp">Haz tu RSVP aquí 🎉</a></p>
@@ -175,6 +169,14 @@
         </div>
     </div>
 </footer>
+
+<!-- Hijo directo de body a propósito: así el CSS de impresión puede ocultar
+     todo lo demás sin dejar espacios vacíos que generen páginas de más. -->
+<div id="nota-imprimible">
+    <p class="nota-imprimible-titulo">Para Pau y Alan 💛</p>
+    <p class="nota-imprimible-texto" id="nota-imprimible-texto"></p>
+    <p class="nota-imprimible-autor" id="nota-imprimible-autor"></p>
+</div>
 
 <script src="js/vendor/jquery-1.11.2.min.js"
         onerror="document.write('<script src=\'https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js\'><\/script>')"></script>

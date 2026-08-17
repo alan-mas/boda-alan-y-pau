@@ -80,6 +80,7 @@
                             <li class="hidden-sm hidden-xs"><a href="#video-bg">Un vistazo a la ciudad</a></li>
                         </ul>
                         <ul class="member-actions">
+                            <li><a href="#" class="login" data-toggle="modal" data-target="#itinerario-modal">Itinerario</a></li>
                             <li><a href="#map" class="login">Lugar</a></li>
                             <li><a href="regalos.html" class="login">Regalos</a></li>
                             <li><a href="#rsvp" class="btn-white btn-small">RSVP</a></li>
@@ -214,16 +215,92 @@
 
         </div>
 
-        <!-- BOTÓN DRESS CODE -->
+        <!-- BOTONES DRESS CODE / ITINERARIO -->
         <div class="row section-padding">
-            <div class="col-md-4 col-md-offset-4 text-center">
-                <a class="btn btn-accent btn-small" data-toggle="modal" data-target="#dc-modal">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <a class="btn btn-accent btn-small" data-toggle="modal" data-target="#dc-modal" style="margin: 0 8px 10px;">
                     <i class="fa fa-male"></i> <i class="fa fa-female"></i>&nbsp;&nbsp;Código de vestimenta
+                </a>
+                <a class="btn btn-accent btn-small" data-toggle="modal" data-target="#itinerario-modal" style="margin: 0 8px 10px;">
+                    <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Itinerario del magno evento
                 </a>
             </div>
         </div>
 
     </div>
+
+    <!-- MODAL ITINERARIO -->
+<div id="itinerario-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+
+                <h3 class="text-center section-padding">Itinerario del magno evento</h3>
+                <p class="text-center itinerario-disclaimer">
+                    Todavía estamos afinando horarios exactos — aquí un adelanto de cómo se va a sentir cada día.
+                    Los tiempos definitivos los vamos a confirmar más cerca de la fecha.
+                </p>
+
+                <!-- ===================== BODA ===================== -->
+                <h4 class="text-center"><strong>BODA · 27 de febrero</strong></h4>
+                <div class="itinerario-timeline">
+                    <div class="itinerario-item">
+                        <span class="itinerario-item-hora">Por confirmar</span>
+                        <h5 class="itinerario-item-titulo"><i class="fa fa-map-marker"></i> Llegada de invitados</h5>
+                    </div>
+                    <div class="itinerario-item">
+                        <span class="itinerario-item-hora">Por confirmar</span>
+                        <h5 class="itinerario-item-titulo"><i class="fa fa-heart"></i> Ceremonia</h5>
+                    </div>
+                    <div class="itinerario-item">
+                        <span class="itinerario-item-hora">Por confirmar</span>
+                        <h5 class="itinerario-item-titulo"><i class="fa fa-camera"></i> Sesión de fotos</h5>
+                    </div>
+                    <div class="itinerario-item">
+                        <span class="itinerario-item-hora">Por confirmar</span>
+                        <h5 class="itinerario-item-titulo"><i class="fa fa-glass"></i> Cóctel de bienvenida</h5>
+                    </div>
+                    <div class="itinerario-item">
+                        <span class="itinerario-item-hora">Por confirmar</span>
+                        <h5 class="itinerario-item-titulo"><i class="fa fa-cutlery"></i> Recepción y cena</h5>
+                    </div>
+                    <div class="itinerario-item">
+                        <span class="itinerario-item-hora">Por confirmar</span>
+                        <h5 class="itinerario-item-titulo"><i class="fa fa-music"></i> Primer baile y fiesta</h5>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- ===================== TORNABODA ===================== -->
+                <h4 class="text-center" style="margin-top:30px;"><strong>TORNABODA · 28 de febrero</strong></h4>
+                <div class="itinerario-timeline">
+                    <div class="itinerario-item">
+                        <span class="itinerario-item-hora">Por confirmar</span>
+                        <h5 class="itinerario-item-titulo"><i class="fa fa-coffee"></i> Bienvenida</h5>
+                    </div>
+                    <div class="itinerario-item">
+                        <span class="itinerario-item-hora">Por confirmar</span>
+                        <h5 class="itinerario-item-titulo"><i class="fa fa-sun-o"></i> Actividades y convivencia</h5>
+                    </div>
+                    <div class="itinerario-item">
+                        <span class="itinerario-item-hora">Por confirmar</span>
+                        <h5 class="itinerario-item-titulo"><i class="fa fa-cutlery"></i> Comida</h5>
+                    </div>
+                    <div class="itinerario-item">
+                        <span class="itinerario-item-hora">Por confirmar</span>
+                        <h5 class="itinerario-item-titulo"><i class="fa fa-moon-o"></i> Cierre de la celebración</h5>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
     <!-- MODAL DRESS CODE -->
 <div id="dc-modal" class="modal fade" tabindex="-1" role="dialog">
@@ -250,8 +327,11 @@
                         <li>Camisa negra obligatoria</li>
                         <li>No smoking, pero sí look elegante y pulido</li>
                     </ul>
-                    👉 <a href="https://www.pinterest.com/search/pins/?q=black%20suit%20black%20shirt%20men" target="_blank">
-                    Ver ejemplos</a>
+                    <div class="dresscode-ejemplos">
+                        <span class="dresscode-ejemplos-label">Ejemplos:</span>
+                        <a class="dresscode-ejemplo-link pinterest" href="https://www.pinterest.com/search/pins/?q=black%20suit%20black%20shirt%20men" target="_blank"><i class="fa fa-pinterest-p"></i> Pinterest</a>
+                        <a class="dresscode-ejemplo-link google" href="https://www.google.com/search?q=black%20suit%20black%20shirt%20men&tbm=isch" target="_blank"><i class="fa fa-google"></i> Google Imágenes</a>
+                    </div>
 
                     <br><br>
 
@@ -260,8 +340,11 @@
                         <li>Vestido negro (largo)</li>
                         <li>Estilo elegante / formal</li>
                     </ul>
-                    👉 <a href="https://www.pinterest.com/search/pins/?q=black%20formal%20dress" target="_blank">
-                    Ver ejemplos</a>
+                    <div class="dresscode-ejemplos">
+                        <span class="dresscode-ejemplos-label">Ejemplos:</span>
+                        <a class="dresscode-ejemplo-link pinterest" href="https://www.pinterest.com/search/pins/?q=black%20formal%20dress" target="_blank"><i class="fa fa-pinterest-p"></i> Pinterest</a>
+                        <a class="dresscode-ejemplo-link google" href="https://www.google.com/search?q=black%20formal%20dress&tbm=isch" target="_blank"><i class="fa fa-google"></i> Google Imágenes</a>
+                    </div>
 
                     <p style="margin-top:15px;">
                         Este es el evento principal. Queremos que todos estén en su mejor versión para celebrar con nosotros.
@@ -279,11 +362,14 @@
 
                     <p><strong>Mujeres:</strong></p>
                     <ul>
-                        <li>Vestidos o conjuntos en blanco o pastel</li>
+                        <li>Vestidos o conjuntos en blanco (solamente blanco, sin pastel)</li>
                         <li>Look fresco pero arreglado</li>
                     </ul>
-                    👉 <a href="https://www.pinterest.com/search/pins/?q=white%20pastel%20outfit%20women" target="_blank">
-                    Ver ejemplos</a>
+                    <div class="dresscode-ejemplos">
+                        <span class="dresscode-ejemplos-label">Ejemplos:</span>
+                        <a class="dresscode-ejemplo-link pinterest" href="https://www.pinterest.com/search/pins/?q=outfit%20casual%20women%20full%20white" target="_blank"><i class="fa fa-pinterest-p"></i> Pinterest</a>
+                        <a class="dresscode-ejemplo-link google" href="https://www.google.com/search?q=outfit%20casual%20women%20full%20white&tbm=isch" target="_blank"><i class="fa fa-google"></i> Google Imágenes</a>
+                    </div>
 
                     <br><br>
 
@@ -292,8 +378,11 @@
                         <li>Outfits blancos o tonos muy claros</li>
                         <li>Elegante casual (NO playero)</li>
                     </ul>
-                    👉 <a href="https://www.pinterest.com/search/pins/?q=white%20smart%20casual%20men" target="_blank">
-                    Ver ejemplos</a>
+                    <div class="dresscode-ejemplos">
+                        <span class="dresscode-ejemplos-label">Ejemplos:</span>
+                        <a class="dresscode-ejemplo-link pinterest" href="https://www.pinterest.com/search/pins/?q=white%20smart%20casual%20men" target="_blank"><i class="fa fa-pinterest-p"></i> Pinterest</a>
+                        <a class="dresscode-ejemplo-link google" href="https://www.google.com/search?q=white%20smart%20casual%20men&tbm=isch" target="_blank"><i class="fa fa-google"></i> Google Imágenes</a>
+                    </div>
 
                     <p style="margin-top:15px;">
                         Evento más relajado para seguir celebrando, convivir y disfrutar con calma.
@@ -308,7 +397,7 @@
 
                     <p>
                         El código de vestimenta es obligatorio.
-                        <strong>Si no se cumple, se NEGARÁ el acceso al evento (no me retes, atte: Alan).</strong>
+                        <strong>Si no se cumple, se NEGARÁ el acceso al evento.</strong>
                     </p>
 
                     <ul>
