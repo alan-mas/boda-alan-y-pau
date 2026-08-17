@@ -1335,6 +1335,59 @@ Mesa de regalos
   padding-bottom: 0;
 }
 
+/* Descargar/imprimir la notita de dedicatoria */
+.nota-descargar-btn {
+  width: 100%;
+  margin-top: 20px;
+
+  i {
+    margin-right: 6px;
+  }
+}
+.nota-descargar-hint {
+  font-size: 12px;
+  color: $txt-accent;
+  padding: 10px 10px 0;
+}
+#nota-imprimible {
+  display: none;
+}
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #nota-imprimible, #nota-imprimible * {
+    visibility: visible;
+  }
+  #nota-imprimible {
+    display: block;
+    position: fixed;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 0 40px;
+  }
+  .nota-imprimible-titulo {
+    font-family: $serif;
+    font-size: 26px;
+    color: $h3-color;
+    margin-bottom: 20px;
+  }
+  .nota-imprimible-texto {
+    font-family: Merriweather, Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 28px;
+    color: $txt-secondary;
+    margin-bottom: 15px;
+  }
+  .nota-imprimible-autor {
+    font-size: 14px;
+    color: $txt-accent;
+  }
+}
+
 /* Banner grande en la página principal que invita a la Mesa de Regalos */
 .regalos-cta {
   background: linear-gradient(135deg, rgba(232, 202, 111, 0.14), rgba(232, 202, 111, 0.04));

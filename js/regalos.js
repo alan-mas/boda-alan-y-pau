@@ -112,6 +112,13 @@
         cargarRegalos(); // refresca las tarjetas con el nuevo estado/progreso
       });
     }
+
+    var descargarNotaBtn = document.getElementById('nota-descargar-btn');
+    if (descargarNotaBtn) {
+      descargarNotaBtn.addEventListener('click', function () {
+        window.print();
+      });
+    }
   });
 
   // ── Carga y render de regalos ──────────────────────────────────
@@ -498,12 +505,18 @@
       (listaNombres ? listaNombres + ' — ' : '') + 'gracias de corazón, significa muchísimo para nosotros.';
 
     var notaWrap = document.getElementById('carrito-confirmacion-nota-wrap');
+    var descargarWrap = document.getElementById('nota-descargar-wrap');
     if (nota) {
       notaWrap.style.display = 'block';
       document.getElementById('carrito-confirmacion-nota').textContent = '"' + nota + '"';
       document.getElementById('carrito-confirmacion-autor').textContent = '— ' + (nombre || 'Un invitado');
+
+      descargarWrap.style.display = 'block';
+      document.getElementById('nota-imprimible-texto').textContent = '"' + nota + '"';
+      document.getElementById('nota-imprimible-autor').textContent = '— ' + (nombre || 'Un invitado');
     } else {
       notaWrap.style.display = 'none';
+      descargarWrap.style.display = 'none';
     }
 
     mostrarEstadoCarrito('confirmacion');
