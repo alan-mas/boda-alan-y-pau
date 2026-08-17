@@ -36,3 +36,12 @@ typings/
 .env
 .sass-cache/
 *.css.map
+
+# Contiene el token real de Mercado Pago y la contraseña del dashboard —
+# nunca debe subirse a este repo, que es público.
+google-apps-script/
+
+# Fotos originales sin comprimir de la sesión de compromiso (~600MB). El
+# sitio usa las versiones ligeras en img/eng_pics/sesion-completa/, generadas
+# con tools/procesar-sesion-fotos.sh — esta carpeta nunca debe subirse.
+img/eng_pics/FULL JPG/
