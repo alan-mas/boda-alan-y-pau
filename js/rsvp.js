@@ -11,6 +11,29 @@
     var form = document.getElementById('rsvp-form');
     if (!form) return;
 
+    // Mientras no se confirme la Boda, la Tornaboda queda bloqueada:
+    // no tiene sentido asistir a la tornaboda sin haber ido a la boda.
+    var chkBoda       = document.getElementById('asiste_boda');
+    var chkTornaboda  = document.getElementById('asiste_tornaboda');
+    var hintTornaboda = document.getElementById('tornaboda-hint');
+
+    function actualizarEstadoTornaboda() {
+      if (!chkBoda || !chkTornaboda) return;
+      if (chkBoda.checked) {
+        chkTornaboda.disabled = false;
+        if (hintTornaboda) hintTornaboda.classList.remove('visible');
+      } else {
+        chkTornaboda.checked = false;
+        chkTornaboda.disabled = true;
+        if (hintTornaboda) hintTornaboda.classList.remove('visible');
+      }
+    }
+
+    if (chkBoda) {
+      chkBoda.addEventListener('change', actualizarEstadoTornaboda);
+      actualizarEstadoTornaboda();
+    }
+
     // Fase de captura (true) para ejecutarse antes de cualquier otro handler
     // y evitar conflictos con scripts previos
     form.addEventListener('submit', function (e) {
@@ -20,6 +43,8 @@
       var nombre       = (form.querySelector('[name="name"]')        || {}).value || '';
       var correo       = (form.querySelector('[name="email"]')       || {}).value || '';
       var codigo       = (form.querySelector('[name="invite_code"]') || {}).value || '';
+      var asisteBoda      = !!(chkBoda && chkBoda.checked);
+      var asisteTornaboda = !!(chkTornaboda && chkTornaboda.checked);
       var alertBox     = document.getElementById('alert-wrapper');
       var btn          = form.querySelector('.rsvp-btn');
 
@@ -39,6 +64,17 @@
         return;
       }
 
+      if (!asisteBoda) {
+        mostrarAlerta(alertBox, false, 'Debes confirmar tu asistencia a la boda.');
+        return;
+      }
+
+      if (asisteTornaboda && !asisteBoda) {
+        if (hintTornaboda) hintTornaboda.classList.add('visible');
+        mostrarAlerta(alertBox, false, 'No puedes confirmar la tornaboda sin confirmar la boda.');
+        return;
+      }
+
       var textoOriginal = btn.innerHTML;
       btn.disabled = true;
       btn.innerHTML = 'Enviando&hellip;';
@@ -46,7 +82,9 @@
       var payload = {
         nombre: nombre,
         correo: correo,
-        codigo: codigo
+        codigo: codigo,
+        asisteBoda: asisteBoda,
+        asisteTornaboda: asisteTornaboda
       };
 
       fetch(RSVP_URL, {

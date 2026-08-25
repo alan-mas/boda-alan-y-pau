@@ -1514,6 +1514,76 @@ Mesa de regalos
   margin: 0 auto 30px;
 }
 
+/* Nota de "solo adultos" en la página principal */
+.no-ninos {
+  background: $section-dark;
+  padding-top: 0;
+}
+.no-ninos-emoji {
+  display: block;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+.no-ninos-card {
+  max-width: 640px;
+  margin: 25px auto 0;
+  padding: 30px 35px;
+  background: $white-color;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+  text-align: left;
+  p {
+    margin-bottom: 18px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+.rsvp-eventos {
+  text-align: left;
+  margin: 5px 0 10px;
+}
+.rsvp-evento-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: $txt-secondary;
+  margin-bottom: 10px;
+  cursor: pointer;
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: $accent-color;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  input[type="checkbox"]:disabled {
+    cursor: not-allowed;
+  }
+  input[type="checkbox"]:disabled ~ span {
+    opacity: .45;
+  }
+}
+.rsvp-evento-hint {
+  display: none;
+  font-size: 12px;
+  color: #c0392b;
+  margin: -4px 0 10px;
+  &.visible {
+    display: block;
+  }
+}
+.no-ninos-reminder {
+  display: inline-block;
+  background: rgba(232, 202, 111, 0.15);
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 13px;
+  color: $txt-secondary;
+  margin-bottom: 15px;
+}
+
 /* Header simple de regalos.html (página independiente) */
 .regalos-page-header {
   background-color: rgba(55, 36, 40, .95);

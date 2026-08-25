@@ -421,6 +421,24 @@
 
 </section>
 
+<section id="no-ninos" class="section-padding no-ninos">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <span class="no-ninos-emoji">💛</span>
+                <h3 class="header">Una pequeña nota sobre nuestros invitados más pequeños</h3>
+                <div class="no-ninos-card">
+                    <p>Amamos a los niños y sabemos lo importantes que son para cada una de nuestras familias. Sin embargo, esta vez hemos decidido que nuestra boda será una celebración solo para adultos.</p>
+                    <p>Queremos que todos puedan disfrutar de la fiesta, bailar, brindar y pasar una noche increíble sin preocupaciones. Además, entre el alcohol, la cristalería, la música y una pista de baile que probablemente se convierta en zona de alto riesgo después de unas copas… creemos que este no es precisamente el mejor escenario para nuestros pequeños. 😄</p>
+                    <p>Esta decisión no es por falta de cariño —¡todo lo contrario!—, sino porque queremos cuidar de ellos y, al mismo tiempo, que sus papás puedan relajarse, disfrutar y celebrar con nosotros como se debe.</p>
+                    <p>Esperamos contar con su comprensión y, sobre todo, con sus ganas de celebrar.<br>
+                        ¡Los niños tienen todo nuestro amor… pero esta noche, que se queden con la niñera! 🥂✨</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section id="instagram" class="section-padding">
     <div class="container">
         <div class="row">
@@ -804,6 +822,7 @@ a:hover .map-overlay {
             <div class="col-md-6 col-md-offset-3">
                 <h3>¿Qué estás esperando?</h3>
                 <p>Te agradeceríamos mucho que confirmaras tu asistencia antes del 30 de Diciembre de 2026.</p>
+                <p class="no-ninos-reminder">💛 Recuerda: nuestra celebración es solo para adultos</p>
                 <form id="rsvp-form" class="rsvp-form"
                       action=""
                       method="POST">
@@ -830,6 +849,21 @@ a:hover .map-overlay {
                                                                 class="" maxlength="6"
                                                                 placeholder="Código de invitación"
                                                                 required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="rsvp-eventos">
+                                <label class="rsvp-evento-check">
+                                    <input type="checkbox" name="asiste_boda" id="asiste_boda" checked>
+                                    <span>Asistiré a la <strong>Boda</strong> <em>(27 de febrero)</em></span>
+                                </label>
+                                <label class="rsvp-evento-check" id="tornaboda-label">
+                                    <input type="checkbox" name="asiste_tornaboda" id="asiste_tornaboda">
+                                    <span>Asistiré a la <strong>Tornaboda</strong> <em>(28 de febrero)</em></span>
+                                </label>
+                                <p class="rsvp-evento-hint" id="tornaboda-hint">Para confirmar la tornaboda, primero debes confirmar tu asistencia a la boda.</p>
                             </div>
                         </div>
                     </div>
