@@ -45,3 +45,6 @@ google-apps-script/
 # sitio usa las versiones ligeras en img/eng_pics/sesion-completa/, generadas
 # con tools/procesar-sesion-fotos.sh — esta carpeta nunca debe subirse.
 img/eng_pics/FULL JPG/
+
+# Lista de pendientes interna (menciona contraseñas/datos de prueba) — nunca subirla.
+TODO.md
