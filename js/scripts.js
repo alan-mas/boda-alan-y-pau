@@ -2,15 +2,22 @@ $(document).ready(function () {
 
     /***************** Historia: botón "chisme" ******************/
 
+    // Abrir: el botón de arriba desaparece y la historia se despliega.
     $('#btn-chisme').on('click', function () {
-        var $btn = $(this);
-        var abierto = $btn.hasClass('abierto');
+        $(this).attr('aria-expanded', 'true');
+        $('#chisme-inicio').slideUp(300);
+        $('#historia-completa').slideDown(600);
+    });
 
-        $('#historia-completa').slideToggle(600);
-        $('.chisme-psst').slideToggle(300);
-        $btn.toggleClass('abierto', !abierto).attr('aria-expanded', String(!abierto));
-        $btn.find('.btn-chisme-texto').text(abierto ? '¿Quieres conocer más del chisme?' : 'Ya me sé el chisme, ciérralo');
-        $btn.find('.btn-chisme-emoji').last().text(abierto ? '☕' : '🤐');
+    // Cerrar (botón al final del texto): sube suave al inicio de la historia
+    // y luego la pliega, para no dejar al lector perdido en otra sección.
+    $('#btn-chisme-cerrar').on('click', function () {
+        var destino = $('#intro').offset().top - 70;
+        $('html, body').stop().animate({scrollTop: destino}, 600, function () {
+            $('#historia-completa').slideUp(400);
+            $('#chisme-inicio').slideDown(300);
+            $('#btn-chisme').attr('aria-expanded', 'false');
+        });
     });
 
     /***************** Waypoints ******************/
