@@ -1198,6 +1198,7 @@ Hospedaje (hotel cards)
   // Misma altura para las dos tarjetas con convenio.
   .row-convenio {
     display: flex;
+    flex-wrap: wrap;
     &::before,
     &::after {
       display: none;
@@ -1275,6 +1276,23 @@ Hospedaje (hotel cards)
     background: #1ebe5a;
     border-color: #1ebe5a;
   }
+}
+// Convenios aún sin firmar: mismas tarjetas, borde punteado y aviso.
+.hotel-card-pendiente {
+  border-style: dashed;
+
+  .hotel-badge {
+    background: rgba(255, 255, 255, 0.95);
+    color: $txt-secondary;
+  }
+}
+.hotel-content p.hotel-pendiente-aviso {
+  font-size: 13px;
+  font-style: italic;
+  background: #f8f9fd;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 18px;
 }
 .otras-opciones-titulo {
   margin: 20px 0 25px;
