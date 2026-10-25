@@ -1153,7 +1153,47 @@ Hospedaje (hotel cards)
     color: $white-color;
   }
   .hotel-img {
-    height: 220px;
+    height: 140px;
+  }
+  // Compactas: que quepan varias por fila sin saturar.
+  .hotel-content {
+    padding: 14px 16px 16px;
+    font-size: 14px;
+    line-height: 1.5;
+
+    h4 {
+      font-size: 16px;
+      line-height: 1.3;
+      margin: 0 0 6px;
+    }
+    p,
+    li {
+      line-height: 1.5;
+    }
+    p {
+      padding-bottom: 8px;
+    }
+  }
+  // 4 por fila: botones apilados a lo ancho para que no se salgan.
+  @media (min-width: 1200px) {
+    .btn {
+      display: block;
+      width: 100%;
+      margin: 0 0 6px;
+    }
+  }
+  .hotel-precio {
+    font-size: 14px;
+    strong {
+      font-size: 20px;
+    }
+  }
+  .hotel-incluye,
+  .hotel-tarifas {
+    margin-bottom: 10px;
+    li {
+      padding: 4px 0;
+    }
   }
 }
 .hotel-precio {
@@ -1194,8 +1234,8 @@ Hospedaje (hotel cards)
   line-height: 1.8;
   text-align: left;
 }
-@media (min-width: 992px) {
-  // Misma altura para las dos tarjetas con convenio.
+@media (min-width: 768px) {
+  // Misma altura para las tarjetas con convenio.
   .row-convenio {
     display: flex;
     flex-wrap: wrap;
@@ -1209,35 +1249,15 @@ Hospedaje (hotel cards)
   }
 }
 // Staybridge: pasos para reservar y detalles plegables.
-.hotel-reserva {
-  text-align: left;
-  background: #fdf6e3;
-  border-radius: 10px;
-  padding: 14px 18px;
-  margin-bottom: 14px;
-
-  ol {
-    padding-left: 20px;
-    margin: 0 0 8px;
-  }
-  li {
-    padding: 3px 0;
-  }
-  p {
-    padding-bottom: 0;
-  }
-}
-.hotel-content p.hotel-reserva-titulo {
-  font-weight: $semibold;
-  color: $txt-secondary;
-  padding-bottom: 6px;
-}
-.hotel-content p.hotel-reserva-aviso {
-  font-size: 13px;
-}
 .hotel-detalles {
   text-align: left;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
+
+  ol.hotel-reserva-pasos {
+    padding-left: 18px;
+    margin: 4px 0 6px;
+    font-size: 13px;
+  }
 
   summary::-webkit-details-marker {
     display: none;
@@ -1253,7 +1273,8 @@ Hospedaje (hotel cards)
     text-underline-offset: 4px;
     font-weight: $semibold;
     color: $txt-secondary;
-    padding: 8px 0;
+    padding: 4px 0;
+    font-size: 13px;
   }
   ul {
     list-style: none;
@@ -1291,8 +1312,8 @@ Hospedaje (hotel cards)
   font-style: italic;
   background: #f8f9fd;
   border-radius: 10px;
-  padding: 10px 14px;
-  margin-bottom: 18px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
 }
 .otras-opciones-titulo {
   margin: 20px 0 25px;
