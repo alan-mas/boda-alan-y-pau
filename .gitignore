@@ -48,3 +48,6 @@ img/eng_pics/FULL JPG/
 
 # Lista de pendientes interna (menciona contraseñas/datos de prueba) — nunca subirla.
 TODO.md
+
+# Documentos privados de convenios con hoteles (datos de contacto/contratos) — nunca subirlos.
+*.pdf
