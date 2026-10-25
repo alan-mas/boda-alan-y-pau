@@ -67,6 +67,7 @@ Abrir los `.html` directo en el navegador; no hace falta servidor.
 
 ## Trampas conocidas
 
+- **Caché del navegador:** `index.html` carga `styles.min.css?v=…` y `scripts.min.js?v=…`. Al cambiar CSS/JS, actualizar ese `?v=` (fecha) o Alan verá la versión vieja.
 - **SCSS es la fuente de verdad.** Nunca editar `css/styles.min.css` ni `js/scripts.min.js`: gulp los sobreescribe. Si el SCSS y el compilado no coinciden, **preguntar** cuál es el valor correcto antes de "arreglar" (ya pasó que el compilado era el bueno, p. ej. la foto del hero `hero-min-copy.jpg`).
 - **Inyección de fórmulas en Sheets:** lo único que funciona es anteponer un espacio a strings que empiezan con `= + - @ \t \r` (`sanitizarTexto()`). Apóstrofe o `setNumberFormat('@')` NO funcionan.
 - **Apps Script + dominio externo nuevo** (`UrlFetchApp`) requiere autorizar OAuth ejecutando desde el editor una función que contenga esa llamada concreta.
