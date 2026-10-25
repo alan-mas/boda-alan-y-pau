@@ -456,6 +456,14 @@ Intro
   width: 80%;
 }
 
+// normalize.min.css pone overflow-x: hidden en html/body, lo que convierte a
+// body en contenedor de scroll y desactiva position: sticky (fotos de #intro).
+// clip recorta igual el desborde horizontal sin ese efecto.
+html,
+body {
+  overflow-x: clip;
+}
+
 #intro {
   padding-top: 40px;
   img {
@@ -484,9 +492,6 @@ Intro
       max-width: 280px;
       position: sticky;
       top: 110px;
-      // Desvanece el borde inferior para que la foto no se vea cortada.
-      -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent);
-      mask-image: linear-gradient(to bottom, #000 70%, transparent);
     }
     .row > div:first-child img {
       margin-right: auto;
