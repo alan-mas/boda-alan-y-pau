@@ -470,9 +470,23 @@ Intro
       width: 100%;
       max-width: 1500px;
     }
+    // Columnas a la altura del texto para que las fotos lo acompañen
+    // (sticky) mientras se lee la historia completa.
+    .row {
+      display: flex;
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
     img {
       display: block;
       max-width: 280px;
+      position: sticky;
+      top: 110px;
+      // Desvanece el borde inferior para que la foto no se vea cortada.
+      -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent);
+      mask-image: linear-gradient(to bottom, #000 70%, transparent);
     }
     .row > div:first-child img {
       margin-right: auto;
