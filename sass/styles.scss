@@ -259,6 +259,12 @@ Hero
   background-size: cover;
   position: relative;
 
+  // En celular la foto (muy panorámica) se recorta a una franja angosta;
+  // la pareja está entre el 40% y el 65% del ancho, así que centramos ahí.
+  @media (max-width: 767px) {
+    background-position: 53% center;
+  }
+
   /*.rsvp-btn {
     position: absolute;
     bottom: 100px;
