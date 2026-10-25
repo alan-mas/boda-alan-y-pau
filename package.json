@@ -1,23 +1,22 @@
 {
-  "name": "wedding-website",
+  "name": "boda-alan-y-pau",
   "version": "1.0.1",
-  "description": "A wedding website with loads of features.",
+  "description": "Sitio web de la boda de Pau y Alan (27-28 feb 2027, Chihuahua).",
   "main": "npmfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:rampatra/wedding-website.git"
+    "url": "git+https://github.com/alan-mas/boda-alan-y-pau.git"
   },
   "keywords": [
-    "wedding",
-    "template",
-    "website template"
+    "boda",
+    "wedding"
   ],
-  "author": "Ram Patra",
+  "author": "Alan Acosta",
   "license": "GPL-3.0",
-  "homepage": "https://github.com/rampatra/wedding-website",
+  "homepage": "https://alan-mas.github.io/boda-alan-y-pau/",
   "devDependencies": {
     "@google/clasp": "^3.4.1",
     "gulp": "^4.0.2",
@@ -30,5 +29,8 @@
     "animate.css": "^3.7.2",
     "font-awesome": "^4.7.0",
     "waypoints": "^4.0.1"
-  }
+  },
+  "contributors": [
+    "Ram Patra (plantilla original)"
+  ]
 }
