@@ -2,21 +2,31 @@ $(document).ready(function () {
 
     /***************** Historia: botón "chisme" ******************/
 
-    // Abrir: el botón de arriba desaparece y la historia se despliega.
-    $('#btn-chisme').on('click', function () {
-        $(this).attr('aria-expanded', 'true');
-        $('#chisme-inicio').slideUp(300);
-        $('#historia-completa').slideDown(600);
-    });
+    // Un solo botón debajo de la historia: al abrir, el texto se despliega
+    // arriba de él y lo va empujando hasta el final, donde sirve para cerrar.
+    var $btnChisme = $('#btn-chisme');
 
-    // Cerrar (botón al final del texto): sube suave al inicio de la historia
-    // y luego la pliega, para no dejar al lector perdido en otra sección.
-    $('#btn-chisme-cerrar').on('click', function () {
+    function textoBotonChisme(abierto) {
+        $btnChisme.toggleClass('abierto', abierto).attr('aria-expanded', String(abierto));
+        $btnChisme.find('.btn-chisme-emoji').first().text(abierto ? '🤐' : '👀');
+        $btnChisme.find('.btn-chisme-texto').text(abierto ? 'Ya me sé el chisme, ciérralo' : '¿Quieres conocer más del chisme?');
+        $btnChisme.find('.btn-chisme-emoji').last().toggle(!abierto);
+    }
+
+    $btnChisme.on('click', function () {
+        if (!$btnChisme.hasClass('abierto')) {
+            textoBotonChisme(true);
+            $('.chisme-psst').slideUp(300);
+            $('#historia-completa').slideDown(800);
+            return;
+        }
+        // Cerrar: sube suave al inicio de la historia y luego la pliega,
+        // para no dejar al lector perdido en otra sección.
         var destino = $('#intro').offset().top - 70;
-        $('html, body').stop().animate({scrollTop: destino}, 600, function () {
+        $('html, body').stop().animate({scrollTop: destino}, 600).promise().done(function () {
             $('#historia-completa').slideUp(400);
-            $('#chisme-inicio').slideDown(300);
-            $('#btn-chisme').attr('aria-expanded', 'false');
+            $('.chisme-psst').slideDown(300);
+            textoBotonChisme(false);
         });
     });
 
