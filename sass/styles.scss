@@ -1119,6 +1119,96 @@ Hospedaje (hotel cards)
   }
 }
 
+// Hoteles con convenio (tarifa especial por la boda) — van primero y destacados.
+.convenio-intro {
+  max-width: 720px;
+  margin: 10px auto 30px;
+  padding: 22px 28px;
+  background: #fdf6e3;
+  border: 2px dashed $accent-color;
+  border-radius: 16px;
+
+  p {
+    padding-bottom: 0;
+  }
+}
+.convenio-etiqueta {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-weight: $semibold;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  color: $txt-secondary;
+}
+.hotel-card-convenio {
+  border: 2px solid $accent-color;
+
+  .hotel-badge {
+    background: $accent-color;
+    color: $white-color;
+  }
+  .hotel-img {
+    height: 220px;
+  }
+}
+.hotel-precio {
+  font-size: 18px;
+  color: $txt-secondary;
+  strong {
+    font-size: 26px;
+  }
+}
+.hotel-content p.hotel-precio-nota {
+  padding-bottom: 6px;
+  font-size: 13px;
+}
+.hotel-incluye,
+.hotel-tarifas {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  text-align: left;
+
+  li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f0ead6;
+  }
+}
+.hotel-tarifas li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+
+  strong {
+    white-space: nowrap;
+    color: $txt-secondary;
+  }
+}
+.hotel-content p.hotel-servicios {
+  font-size: 13px;
+  line-height: 1.8;
+  text-align: left;
+}
+@media (min-width: 992px) {
+  // Misma altura para las dos tarjetas con convenio.
+  .row-convenio {
+    display: flex;
+    &::before,
+    &::after {
+      display: none;
+    }
+    .hotel-card-convenio {
+      height: calc(100% - 30px);
+    }
+  }
+}
+.otras-opciones-titulo {
+  margin: 20px 0 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: $txt-secondary;
+}
+
 /* ==========================================================================
 Lugar del evento (map section)
 ========================================================================== */
