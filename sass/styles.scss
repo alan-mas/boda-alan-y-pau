@@ -462,6 +462,25 @@ Intro
     width: 100%;
     height: auto;
   }
+
+  // En pantallas grandes: sección más ancha para que el texto tenga líneas
+  // más largas, y cada foto pegada a su orilla para separarlas.
+  @media (min-width: 1200px) {
+    .container {
+      width: 100%;
+      max-width: 1500px;
+    }
+    img {
+      display: block;
+      max-width: 280px;
+    }
+    .row > div:first-child img {
+      margin-right: auto;
+    }
+    .row > div:last-child img {
+      margin-left: auto;
+    }
+  }
 }
 #intro p {
   text-align: center;
