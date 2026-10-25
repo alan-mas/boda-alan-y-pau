@@ -505,6 +505,76 @@ body {
   text-align: center;
 }
 
+// Historia: solo el inicio visible; el resto se despliega con el botón "chisme".
+.historia-completa {
+  display: none;
+}
+.chisme-teaser {
+  text-align: center;
+  margin: 10px 0 35px;
+}
+#intro p.chisme-psst {
+  font-style: italic;
+  font-size: 15px;
+  color: $txt-secondary;
+  margin-bottom: 14px;
+}
+.btn-chisme {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: #fdf6e3;
+  color: $txt-secondary;
+  font-weight: $semibold;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  border: 2px dashed $accent-color;
+  // Forma de globo de diálogo, como mensaje de "¿ya supiste?".
+  border-radius: 28px 28px 28px 6px;
+  box-shadow: 0 6px 18px rgba(232, 202, 111, 0.35);
+  cursor: pointer;
+  animation: chisme-sacudida 4s ease-in-out infinite;
+  transition: background 0.25s, color 0.25s, transform 0.25s;
+
+  &:hover,
+  &:focus {
+    background: $accent-color;
+    color: $white-color;
+    border-style: solid;
+    transform: scale(1.04);
+    outline: none;
+  }
+  &.abierto {
+    animation: none;
+    border-style: solid;
+  }
+}
+.btn-chisme-emoji {
+  display: inline-block;
+  font-size: 20px;
+}
+.btn-chisme:not(.abierto) .btn-chisme-emoji:first-child {
+  animation: chisme-ojitos 2.5s ease-in-out infinite;
+}
+@keyframes chisme-sacudida {
+  0%, 84%, 100% { transform: rotate(0); }
+  88% { transform: rotate(-3deg); }
+  92% { transform: rotate(3deg); }
+  96% { transform: rotate(-2deg); }
+}
+@keyframes chisme-ojitos {
+  0%, 40%, 100% { transform: translateX(0); }
+  50%, 65% { transform: translateX(-3px); }
+  75%, 90% { transform: translateX(3px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-chisme,
+  .btn-chisme-emoji {
+    animation: none !important;
+  }
+}
+
 /* ==========================================================================
 Features-stack
 ========================================================================== */

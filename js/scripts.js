@@ -1,5 +1,18 @@
 $(document).ready(function () {
 
+    /***************** Historia: botón "chisme" ******************/
+
+    $('#btn-chisme').on('click', function () {
+        var $btn = $(this);
+        var abierto = $btn.hasClass('abierto');
+
+        $('#historia-completa').slideToggle(600);
+        $('.chisme-psst').slideToggle(300);
+        $btn.toggleClass('abierto', !abierto).attr('aria-expanded', String(!abierto));
+        $btn.find('.btn-chisme-texto').text(abierto ? '¿Quieres conocer más del chisme?' : 'Ya me sé el chisme, ciérralo');
+        $btn.find('.btn-chisme-emoji').last().text(abierto ? '☕' : '🤐');
+    });
+
     /***************** Waypoints ******************/
 
     $('.wp1').waypoint(function () {
