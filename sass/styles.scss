@@ -1706,6 +1706,21 @@ Mesa de regalos
     text-align: center;
   }
 }
+.itinerario-item-lugar {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 13px;
+  color: $txt-accent;
+  text-decoration: underline;
+
+  i {
+    margin-right: 4px;
+  }
+  &:hover,
+  &:focus {
+    color: $accent-color;
+  }
+}
 
 /* Links de ejemplo (Pinterest / Google Imágenes) en el código de vestimenta */
 .dresscode-ejemplos {
