@@ -48,6 +48,7 @@ Abrir los `.html` directo en el navegador; no hace falta servidor.
   - Config en `google-apps-script/.clasp.json` (scriptId del script ligado al Sheet) y `.claspignore` (solo sube `Code.gs` y `appsscript.json`). Sesión de Google de Alan en `~/.clasprc.json` — nunca leerla ni mostrarla.
   - Cambios hechos en el editor en línea se pierden con el siguiente push: si Alan editó en línea, primero comparar con `clasp pull` en el scratchpad.
   - Editar **datos** del Sheet (regalos, precios) no requiere deploy; solo cambios de código.
+  - **Ejecutar una función del script (p. ej. altas masivas en el Sheet):** `clasp run` NO funciona (no hay proyecto GCP). Patrón: ruta temporal en `doGet` protegida con `DASHBOARD_PASSWORD` → `deploy.sh` → curl → quitar la ruta → `deploy.sh` otra vez. Google cachea la respuesta por URL: para confirmar que se retiró, usar parámetros distintos.
 - La misma URL `/exec` está en `js/rsvp.js`, `js/regalos.js` y `js/dashboard.js`.
 - Rutas: `doPost` → RSVP (por defecto), `accion: 'iniciarPagoCarrito'`, webhook de Mercado Pago. `doGet` → `accion=listarRegalos`, `accion=estadisticas`.
 - Config al inicio del archivo: `SPREADSHEET_ID`, `MERCADO_PAGO_ACCESS_TOKEN`, `SITE_URL`, `MODO_PRUEBA_PAGOS`, `DASHBOARD_PASSWORD`.
@@ -56,7 +57,7 @@ Abrir los `.html` directo en el navegador; no hace falta servidor.
 ### Hojas del Sheet
 - **Invitados** — un código de invitación de 6 caracteres por invitado (generado con `generarCodigos()`); col. I "Asiste Boda", J "Asiste Tornaboda".
 - **Confirmaciones** — bitácora de RSVPs; col. E "Asiste Boda", F "Asiste Tornaboda".
-- **Regalos** — `ID · Nombre · Descripcion · Foto · Tipo(unico/fondo) · Precio · Meta · Recaudado · Estado · Comprador · Categoria`.
+- **Regalos** — `ID · Nombre · Descripcion · Foto · Tipo(unico/fondo) · Precio · Meta · Recaudado · Estado · Comprador · Categoria · Link`. "Link" (col. L) sale en la tarjeta como "Link de referencia para chismosos".
 - **Pagos_Regalos** — bitácora privada de pagos (incluye teléfono y nota).
 
 ## Reglas de negocio (decididas por Alan, no cambiar sin preguntar)
