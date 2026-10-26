@@ -339,7 +339,7 @@
           '</div>' +
           '<div class="regalo-content">' +
             '<h4>' + escaparHtml(regalo.nombre) + '</h4>' +
-            '<p>' + escaparHtml(regalo.descripcion) + linkInfo + '</p>' +
+            '<p class="regalo-desc">' + escaparHtml(regalo.descripcion) + linkInfo + '</p>' +
             cuerpo +
           '</div>' +
         '</div>' +

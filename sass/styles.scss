@@ -1499,7 +1499,24 @@ Cross-promo RSVP <-> Mesa de Regalos
 /* ==========================================================================
 Mesa de regalos
 ========================================================================== */
+/* Flex en vez del float de Bootstrap: las tarjetas tienen alturas distintas
+   y con float se atoran y dejan huecos. */
+#regalos-grid {
+  display: flex;
+  flex-wrap: wrap;
+
+  &:before, &:after { display: none; } // clearfix de .row rompe el flex
+
+  > [class*="col-"] {
+    display: flex;
+
+    @media (max-width: 767px) { width: 100%; } // en xs Bootstrap no les da ancho
+  }
+}
 .regalo-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   position: relative;
   border-radius: 12px;
   overflow: hidden;
@@ -1544,6 +1561,17 @@ Mesa de regalos
 }
 .regalo-content {
   padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  > .regalo-desc { flex: 1; } // la descripción absorbe la diferencia: controles alineados abajo
+  > .btn { align-self: flex-start; }
+  > .regalo-progress-label { // le gana a "p" de arriba, que le metía ~30px de aire
+    margin-bottom: 0;
+    padding-bottom: 4px;
+    line-height: 1.6;
+  }
 
   h4 {
     margin-bottom: 8px;
