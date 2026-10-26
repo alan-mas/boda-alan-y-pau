@@ -1600,6 +1600,31 @@ Mesa de regalos
   border: 1px solid $keyline-color;
   border-radius: 6px;
 }
+.regalo-btn-completo {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  border-color: #6b8e23;
+  color: #4f6b17;
+  background: rgba(#6b8e23, 0.08);
+
+  &:hover, &:focus, &.en-carrito {
+    border-color: #6b8e23;
+    background: #6b8e23;
+    color: #fff;
+  }
+}
+.regalo-btn-completo-monto {
+  font-weight: $semibold;
+  white-space: nowrap;
+}
+.regalo-link-chisme {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: $accent-color;
+  text-decoration: underline;
+}
 .regalo-nota-input {
   width: 100%;
   border: solid 1px $keyline-color;

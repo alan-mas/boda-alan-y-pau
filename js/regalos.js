@@ -37,6 +37,12 @@
         return;
       }
 
+      var btnCompleto = e.target.closest ? e.target.closest('.regalo-btn-completo') : null;
+      if (btnCompleto) {
+        agregarAlCarritoDesdeTarjeta(btnCompleto);
+        return;
+      }
+
       var btn = e.target.closest ? e.target.closest('.regalo-btn') : null;
       if (btn && !btn.disabled) {
         agregarAlCarritoDesdeTarjeta(btn);
@@ -295,6 +301,16 @@
           return '<span class="regalo-monto-opcion' + (activo ? ' activo' : '') + '" data-monto="' + m + '">$' + formatoMoneda(m) + '</span>';
         }).join('');
         var montoInicial = itemCarrito ? itemCarrito.monto : MONTOS_SUGERIDOS[0];
+        // "Completo y ponle aguacate": aporta todo lo que le falta a la meta
+        var faltante = regalo.meta > 0 ? Math.max(0, regalo.meta - regalo.recaudado) : 0;
+        var completoEnCarrito = itemCarrito && faltante > 0 && itemCarrito.monto === faltante;
+        var botonCompleto = faltante > 0
+          ? '<button class="btn btn-small regalo-btn-completo' + (completoEnCarrito ? ' en-carrito' : '') + '" ' +
+              'data-id="' + escaparHtml(regalo.id) + '" data-monto="' + faltante + '">' +
+              (completoEnCarrito ? '<i class="fa fa-check"></i> ' : '') +
+              'Completo y ponle aguacate 🥑 <span class="regalo-btn-completo-monto">$' + formatoMoneda(faltante) + '</span>' +
+            '</button>'
+          : '';
 
         cuerpo =
           '<div class="regalo-progress-track"><div class="regalo-progress-fill" style="width:' + pct + '%;"></div></div>' +
@@ -304,9 +320,15 @@
           '<button class="btn btn-small regalo-btn' + (enCarrito ? ' en-carrito' : ' btn-fill') + '" ' +
             'data-id="' + escaparHtml(regalo.id) + '" data-monto="' + montoInicial + '" style="margin-top:10px;">' +
             (enCarrito ? '<i class="fa fa-check"></i> Actualizar en el carrito' : 'Agregar al carrito') +
-          '</button>';
+          '</button>' +
+          botonCompleto;
       }
     }
+
+    // Link opcional (col. L del Sheet) con más info del lugar; solo http(s)
+    var linkInfo = /^https?:\/\//i.test(regalo.link || '')
+      ? ' <a class="regalo-link-chisme" href="' + escaparHtml(regalo.link) + '" target="_blank" rel="noopener">🔎 Link de referencia para chismosos</a>'
+      : '';
 
     return (
       '<div class="col-md-4 col-sm-6">' +
@@ -317,7 +339,7 @@
           '</div>' +
           '<div class="regalo-content">' +
             '<h4>' + escaparHtml(regalo.nombre) + '</h4>' +
-            '<p>' + escaparHtml(regalo.descripcion) + '</p>' +
+            '<p>' + escaparHtml(regalo.descripcion) + linkInfo + '</p>' +
             cuerpo +
           '</div>' +
         '</div>' +
@@ -349,7 +371,9 @@
     var regalo = (window.__regalos || []).filter(function (r) { return r.id === id; })[0];
     if (!regalo) return;
 
-    if (regalo.tipo === 'fondo' && monto < MONTO_MINIMO) {
+    // Si a la meta le falta menos del mínimo, se permite aportar justo lo que falta
+    var faltante = regalo.meta > 0 ? regalo.meta - regalo.recaudado : Infinity;
+    if (regalo.tipo === 'fondo' && monto < Math.min(MONTO_MINIMO, faltante)) {
       btn.closest('.regalo-content').querySelector('.regalo-monto-custom').focus();
       return;
     }
