@@ -2373,19 +2373,27 @@ Ronda 2026-11-21: botones más visibles, título Eventos centrado, contacto
 /* ===== Selector de idioma flotante (B7) ===== */
 .idioma-switcher {
   position: fixed;
-  right: 18px;
-  bottom: 18px;
+  right: 14px;
+  top: 86px;
   z-index: 1001;
   font-family: inherit;
 
   &__btn {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 46px;
+    padding: 0 14px;
+    border-radius: 23px;
     border: 2px solid #fff;
-    background: rgba(55, 36, 40, .9);
-    font-size: 26px;
+    background: rgba(55, 36, 40, .92);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
     line-height: 1;
+    span { font-size: 22px; }
+    small { font-size: 11px; opacity: .8; }
     cursor: pointer;
     box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
     transition: transform 200ms ease;
@@ -2395,7 +2403,7 @@ Ronda 2026-11-21: botones más visibles, título Eventos centrado, contacto
   &__menu {
     position: absolute;
     right: 0;
-    bottom: 62px;
+    top: 54px;
     margin: 0;
     padding: 6px;
     list-style: none;
@@ -2405,7 +2413,7 @@ Ronda 2026-11-21: botones más visibles, título Eventos centrado, contacto
     min-width: 170px;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(8px);
+    transform: translateY(-8px);
     transition: all 200ms ease;
   }
   &.abierto &__menu { opacity: 1; visibility: visible; transform: translateY(0); }

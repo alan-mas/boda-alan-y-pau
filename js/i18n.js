@@ -7,11 +7,11 @@
   'use strict';
 
   var IDIOMAS = [
-    { id: 'es',  bandera: '🇲🇽', nombre: 'Español',  lang: 'es' },
-    { id: 'en',  bandera: '🇺🇸', nombre: 'English',  lang: 'en' },
-    { id: 'nor', bandera: '🤠', nombre: 'Norteño',  lang: 'es-MX' },
-    { id: 'pir', bandera: '🏴‍☠️', nombre: 'Pirata',   lang: 'es' },
-    { id: 'par', bandera: '🐍', nombre: 'Pársel',   lang: 'es' }
+    { id: 'es',  bandera: '🇲🇽', nombre: 'Español',  lang: 'es', sigla: 'ES' },
+    { id: 'en',  bandera: '🇺🇸', nombre: 'English',  lang: 'en', sigla: 'EN' },
+    { id: 'nor', bandera: '🤠', nombre: 'Norteño',  lang: 'es-MX', sigla: 'NOR' },
+    { id: 'pir', bandera: '🏴‍☠️', nombre: 'Pirata',   lang: 'es', sigla: 'PIR' },
+    { id: 'par', bandera: '🐍', nombre: 'Pársel',   lang: 'es', sigla: 'PAR' }
   ];
   var CLAVE = 'boda_idioma';
   var ATRIBUTOS = ['placeholder', 'title', 'aria-label', 'alt'];
@@ -80,9 +80,14 @@
       else e.innerHTML = '<img src="img/onepiece.png" alt="" width="80">';
       e.title = '¡Voy a ser el Rey de los Piratas!';
     });
-    Object.keys(SOMBREROS).forEach(function (foto) {
+    ponerSombreros('img/sombrero.svg', SOMBREROS);
+  }
+
+  // Sombreros encima de las fotos de los novios (posiciones en % de la foto)
+  function ponerSombreros(svg, conf) {
+    Object.keys(conf).forEach(function (foto) {
       document.querySelectorAll('img[src="img/' + foto + '"]').forEach(function (img) {
-        var v = SOMBREROS[foto], w = img.parentNode;
+        var v = conf[foto], w = img.parentNode;
         if (!w.classList.contains('foto-con-sombrero')) {
           w = document.createElement('span');
           w.className = 'foto-con-sombrero';
@@ -90,11 +95,18 @@
           w.appendChild(img);
         }
         var h = document.createElement('img');
-        h.src = 'img/sombrero.svg'; h.alt = ''; h.className = 'sombrero-luffy';
+        h.src = svg; h.alt = ''; h.className = 'sombrero-luffy';
         h.style.top = v[0] + '%'; h.style.left = v[1] + '%'; h.style.width = v[2] + '%';
         w.appendChild(h);
       });
     });
+  }
+
+  // Modo Norteño: texanas a los novios
+  var TEXANAS = { 'IMG_2317.jpg': [7, 27, 46], 'DSD_0214.jpg': [3, 33, 44] };
+  function nortenos(si) {
+    document.body.classList.toggle('modo-norteno', si);
+    if (si) ponerSombreros('img/texana.svg', TEXANAS);
   }
 
 
@@ -139,8 +151,9 @@
     document.documentElement.setAttribute('lang', info.lang);
     serpientes(id === 'par');
     piratas(id === 'pir');
+    nortenos(id === 'nor');
     var btn = document.querySelector('.idioma-switcher__btn');
-    if (btn) btn.textContent = info.bandera;
+    if (btn) btn.innerHTML = '<span>' + info.bandera + '</span> ' + info.sigla + ' <small>▾</small>';
     document.querySelectorAll('.idioma-switcher__opcion').forEach(function (o) {
       o.setAttribute('aria-checked', o.getAttribute('data-idioma') === id ? 'true' : 'false');
     });
@@ -150,7 +163,7 @@
   function cambiar(id) {
     if (id === 'es' || id === 'par' || window.I18N_DICT[id]) { aplicar(id); return; }
     var s = document.createElement('script');
-    s.src = 'js/i18n/' + id + '.js?v=' + VERSION;
+    s.src = 'js/i18n/' + id + '.js?v=' + VERSION + 'b';
     s.onload = function () { aplicar(id); };
     document.head.appendChild(s);
   }
