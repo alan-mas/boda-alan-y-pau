@@ -2290,3 +2290,55 @@ Ver toda la sesión (sesion-completa.html)
     margin-bottom: 15px;
   }
 }
+/* ==========================================================================
+Ronda 2026-11-21: botones más visibles, título Eventos centrado, contacto
+========================================================================== */
+.events .header { text-align: center; }
+
+/* Hero: "Confirma tu asistencia" con fondo visible y hover notorio */
+.hero .rsvp-btn {
+  color: $white-color;
+  background-color: rgba($accent-color, 0.85);
+  border-color: $accent-color;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: all 200ms ease-in-out;
+  &:hover, &:focus {
+    color: $accent-color;
+    background-color: $white-color;
+    border-color: $white-color;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Código de vestimenta / Itinerario: sólidos en reposo, contorno al pasar el mouse */
+.btn-evento {
+  transition: all 200ms ease-in-out;
+  &:hover, &:focus {
+    color: $accent-color;
+    background-color: transparent;
+    border-color: $accent-color;
+  }
+}
+
+.eventos-contacto {
+  margin-top: 20px;
+  font-size: 15px;
+  a { font-weight: 600; white-space: nowrap; }
+}
+
+.japon-fotos { margin-top: 60px; }
+.japon-msg {
+  margin-top: 18px;
+  font-size: 17px;
+  font-style: italic;
+  color: $txt-accent;
+}
+
+.carrito-confirmacion-lista {
+  display: inline-block;
+  text-align: left;
+  margin: 10px auto 15px;
+  padding-left: 22px;
+  li { list-style: decimal; margin: 3px 0; }
+}

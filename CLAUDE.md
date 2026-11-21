@@ -11,6 +11,11 @@ Guía para Claude Code en este repositorio.
 > - Verificar sin capturas de pantalla salvo que el cambio sea visual (curl, DOM, consola).
 > - Respuestas cortas y al grano; sugerir sesión nueva (`/clear`) al terminar un bloque grande de trabajo.
 
+> **Checkpoints y `/clear`** — la barra de estado muestra los tokens de contexto (🟢 <60k · 🟡 60–100k · 🔴 ≥100k; scripts en `../.claude/`). Un hook avisa a Claude al pasar 60k/100k.
+> - **Checkpoint** = reescribir la sección "📍 En qué nos quedamos" de `TODO.md` (≤10 líneas: último commit/deploy, qué quedó a medias con archivo:línea, siguiente paso, datos que Alan debe dar) y marcar tareas hechas/nuevas. Nada de logs ni historial largo: lo demás ya está en git.
+> - Guardar checkpoint al cerrar cada bloque y siempre antes de recomendar `/clear`. En 🔴, decirle a Alan explícitamente: "es momento de /clear".
+> - Tras `/clear` o sesión nueva: leer solo `TODO.md` (este archivo ya se carga solo) y continuar desde "En qué nos quedamos".
+
 ## Qué es
 
 Sitio web de la boda de **Pau y Alan** — **27 y 28 de febrero de 2027**, Quinta Regina, Chihuahua capital, México. Todo el sitio está en español.

@@ -326,7 +326,9 @@
     }
 
     // Link opcional (col. L del Sheet) con más info del lugar; solo http(s)
-    var linkInfo = /^https?:\/\//i.test(regalo.link || '')
+    // Sin link "para chismosos" en los vuelos
+    var esVuelo = /^vuelo/i.test((regalo.nombre || '').trim());
+    var linkInfo = !esVuelo && /^https?:\/\//i.test(regalo.link || '')
       ? ' <a class="regalo-link-chisme" href="' + escaparHtml(regalo.link) + '" target="_blank" rel="noopener">🔎 Link de referencia para chismosos</a>'
       : '';
 
@@ -522,11 +524,23 @@
     document.getElementById('carrito-confirmacion-titulo').textContent =
       esPlural ? '¡Regalos Enviados!' : '¡Regalo Enviado!';
 
-    var listaNombres = items && items.length
-      ? items.map(function (i) { return i.nombre; }).join(', ')
-      : '';
-    document.getElementById('carrito-confirmacion-subtitulo').textContent =
-      (listaNombres ? listaNombres + ' — ' : '') + 'gracias de corazón, significa muchísimo para nosotros.';
+    // Lista ordenada de los regalos enviados (antes era texto corrido)
+    var subtitulo = document.getElementById('carrito-confirmacion-subtitulo');
+    var lista = document.getElementById('carrito-confirmacion-lista');
+    if (!lista) {
+      lista = document.createElement('ol');
+      lista.id = 'carrito-confirmacion-lista';
+      lista.className = 'carrito-confirmacion-lista';
+      subtitulo.parentNode.insertBefore(lista, subtitulo);
+    }
+    lista.innerHTML = '';
+    (items || []).forEach(function (i) {
+      var li = document.createElement('li');
+      li.textContent = i.nombre;
+      lista.appendChild(li);
+    });
+    lista.style.display = items && items.length ? '' : 'none';
+    subtitulo.textContent = 'Gracias de corazón, significa muchísimo para nosotros.';
 
     var notaWrap = document.getElementById('carrito-confirmacion-nota-wrap');
     var descargarWrap = document.getElementById('nota-descargar-wrap');
