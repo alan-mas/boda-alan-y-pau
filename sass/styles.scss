@@ -2454,13 +2454,8 @@ body.modo-parsel {
   .idioma-switcher__btn { background: #1a472a; border-color: #aaaaaa; }
 }
 .huevo-parsel img { display: block; mix-blend-mode: multiply; filter: drop-shadow(0 2px 4px rgba(0,0,0,.2)); }
-.huevo-pirata img { display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,.25)); }
-.sombrero-luffy {
-  position: absolute;
-  z-index: 4;
-  pointer-events: none;
-  transform: rotate(-6deg);
-  filter: drop-shadow(0 3px 3px rgba(0,0,0,.3));
+body.modo-norteno .hero {
+  background-image: url('../img/norteno/hero.jpg');
+  @media (max-width: 767px) { background-position: center center; }
 }
-.foto-con-sombrero { position: relative; display: block; }
-.foto-con-sombrero .sombrero-luffy { position: absolute !important; }
+.huevo-pirata img { display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,.25)); }

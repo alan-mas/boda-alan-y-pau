@@ -67,46 +67,41 @@
     });
   }
 
-  // Modo Pirata: calaveras escondidas + sombrero de paja en las fotos de los novios
+  // Modo Pirata: calaveras escondidas
   var EGGS_PIRATA = [['#invitation', '5%', '88%'], ['#events', '6%', '5%'], ['#rsvp', '8%', '90%'],
     ['#hospedaje', '2%', '6%'], ['footer', '10%', '30%']];
-  var SOMBREROS = { 'IMG_2317.jpg': [11, 32, 36], 'DSD_0214.jpg': [7, 38, 34] }; // top%, left%, ancho%
   function piratas(si) {
     document.body.classList.toggle('modo-pirata', si);
-    document.querySelectorAll('.huevo-pirata, .sombrero-luffy').forEach(function (e) { e.remove(); });
+    document.querySelectorAll('.huevo-pirata').forEach(function (e) { e.remove(); });
     if (!si) return;
     ponerHuevos(EGGS_PIRATA, 'huevo-pirata', function (e, i) {
       if (i % 2) e.textContent = '🏴‍☠️';
       else e.innerHTML = '<img src="img/onepiece.png" alt="" width="80">';
       e.title = '¡Voy a ser el Rey de los Piratas!';
     });
-    ponerSombreros('img/sombrero.svg', SOMBREROS);
   }
 
-  // Sombreros encima de las fotos de los novios (posiciones en % de la foto)
-  function ponerSombreros(svg, conf) {
-    Object.keys(conf).forEach(function (foto) {
-      document.querySelectorAll('img[src="img/' + foto + '"]').forEach(function (img) {
-        var v = conf[foto], w = img.parentNode;
-        if (!w.classList.contains('foto-con-sombrero')) {
-          w = document.createElement('span');
-          w.className = 'foto-con-sombrero';
-          img.parentNode.insertBefore(w, img);
-          w.appendChild(img);
-        }
-        var h = document.createElement('img');
-        h.src = svg; h.alt = ''; h.className = 'sombrero-luffy';
-        h.style.top = v[0] + '%'; h.style.left = v[1] + '%'; h.style.width = v[2] + '%';
-        w.appendChild(h);
+  // Modo Norteño: fotos con texana (el banner cambia por CSS) + "Hecha Pa' Mí" de fondo
+  var FOTOS_NORTENAS = { 'img/IMG_2317.jpg': 'img/norteno/alan.jpg', 'img/DSD_0214.jpg': 'img/norteno/pau.jpg' };
+  function nortenos(si, conMusica) {
+    document.body.classList.toggle('modo-norteno', si);
+    Object.keys(FOTOS_NORTENAS).forEach(function (orig) {
+      document.querySelectorAll('img[data-foto-orig="' + orig + '"], img[src="' + orig + '"]').forEach(function (img) {
+        img.setAttribute('data-foto-orig', orig);
+        img.src = si ? FOTOS_NORTENAS[orig] : orig;
       });
     });
-  }
-
-  // Modo Norteño: texanas a los novios
-  var TEXANAS = { 'IMG_2317.jpg': [7, 27, 46], 'DSD_0214.jpg': [3, 33, 44] };
-  function nortenos(si) {
-    document.body.classList.toggle('modo-norteno', si);
-    if (si) ponerSombreros('img/texana.svg', TEXANAS);
+    var musica = document.getElementById('musica-nortena');
+    if (!si) { if (musica) musica.remove(); return; }
+    if (musica || !conMusica) return;
+    musica = document.createElement('iframe');
+    musica.id = 'musica-nortena';
+    musica.src = 'https://www.youtube.com/embed/IbE7peGTpmc?autoplay=1&loop=1&playlist=IbE7peGTpmc';
+    musica.allow = 'autoplay; encrypted-media';
+    musica.title = 'Música de fondo';
+    musica.setAttribute('aria-hidden', 'true');
+    musica.style.cssText = 'position:fixed;width:1px;height:1px;left:-9999px;bottom:0;border:0;opacity:0;';
+    document.body.appendChild(musica);
   }
 
 
@@ -143,7 +138,7 @@
     });
   }
 
-  function aplicar(id) {
+  function aplicar(id, click) {
     actual = id;
     nodos.forEach(function (x) { x.nodo.nodeValue = x.lead + traducir(x.texto, id) + x.trail; });
     atributos.forEach(function (x) { x.el.setAttribute(x.attr, traducir(x.texto, id)); });
@@ -151,7 +146,7 @@
     document.documentElement.setAttribute('lang', info.lang);
     serpientes(id === 'par');
     piratas(id === 'pir');
-    nortenos(id === 'nor');
+    nortenos(id === 'nor', click);
     var btn = document.querySelector('.idioma-switcher__btn');
     if (btn) btn.innerHTML = '<span>' + info.bandera + '</span> ' + info.sigla + ' <small>▾</small>';
     document.querySelectorAll('.idioma-switcher__opcion').forEach(function (o) {
@@ -160,11 +155,11 @@
     try { localStorage.setItem(CLAVE, id); } catch (e) {}
   }
 
-  function cambiar(id) {
-    if (id === 'es' || id === 'par' || window.I18N_DICT[id]) { aplicar(id); return; }
+  function cambiar(id, click) {
+    if (id === 'es' || id === 'par' || window.I18N_DICT[id]) { aplicar(id, click); return; }
     var s = document.createElement('script');
     s.src = 'js/i18n/' + id + '.js?v=' + VERSION + 'b';
-    s.onload = function () { aplicar(id); };
+    s.onload = function () { aplicar(id, click); };
     document.head.appendChild(s);
   }
 
@@ -187,7 +182,7 @@
     }
     btn.addEventListener('click', function (e) { e.stopPropagation(); abrir(!cont.classList.contains('abierto')); });
     cont.querySelectorAll('.idioma-switcher__opcion').forEach(function (o) {
-      o.addEventListener('click', function () { cambiar(o.getAttribute('data-idioma')); abrir(false); });
+      o.addEventListener('click', function () { cambiar(o.getAttribute('data-idioma'), true); abrir(false); });
     });
     document.addEventListener('click', function () { abrir(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') abrir(false); });
