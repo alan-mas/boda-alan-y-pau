@@ -130,7 +130,7 @@
     var clase = exito ? 'alert-success' : 'alert-danger';
     wrapper.innerHTML =
       '<div class="alert ' + clase + '" style="margin-top:12px;border-radius:4px;padding:10px 15px;">' +
-      escaparHtml(mensaje) +
+      escaparHtml(window.i18nT ? window.i18nT(mensaje) : mensaje) +
       '</div>';
   }
 
