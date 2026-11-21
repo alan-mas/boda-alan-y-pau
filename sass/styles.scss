@@ -1797,6 +1797,33 @@ Mesa de regalos
 }
 
 /* Links de ejemplo (Pinterest / Google Imágenes) en el código de vestimenta */
+.dresscode-galeria {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 10px 0 20px;
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.dresscode-foto {
+  display: block;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid $keyline-color;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .3s ease;
+  }
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
 .dresscode-ejemplos {
   display: flex;
   align-items: center;
