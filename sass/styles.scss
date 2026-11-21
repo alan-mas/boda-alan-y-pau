@@ -2426,3 +2426,22 @@ Ronda 2026-11-21: botones más visibles, título Eventos centrado, contacto
     span { font-size: 18px; margin-right: 6px; }
   }
 }
+
+/* Easter eggs del modo Pársel */
+.huevo-parsel {
+  position: absolute;
+  z-index: 5;
+  font-size: 28px;
+  pointer-events: auto;
+  opacity: .85;
+  animation: serpentear 3s ease-in-out infinite;
+  cursor: help;
+}
+@keyframes serpentear {
+  0%, 100% { transform: translateX(0) rotate(-8deg); }
+  50% { transform: translateX(10px) rotate(8deg) scale(1.1); }
+}
+body.modo-parsel {
+  h1, h2, h3 { color: #1a472a !important; text-shadow: 0 0 1px #aaaaaa; }
+  .idioma-switcher__btn { background: #1a472a; border-color: #aaaaaa; }
+}
