@@ -24,7 +24,7 @@ Global Styles
   margin: 0;
 }
 a {
-  color: $accent-color;
+  color: $accent-text;
   -webkit-transition-timing-function: ease;
   transition-timing-function: ease;
   -webkit-transition-duration: 200ms;
@@ -33,7 +33,7 @@ a {
   transition-property: color, border-color, background-color;
 }
 a:hover, a:focus {
-  color: $accent-color-hover;
+  color: $accent-text-hover;
   text-decoration: none;
 }
 body {
@@ -375,7 +375,7 @@ header {
     font-size: $nav-font-size;
 
     &.login {
-      margin-right: 20px;
+      margin-right: 18px;
     }
   }
   .logo {
@@ -385,7 +385,7 @@ header {
     height: 19px;
   }
   ul.primary-nav {
-    margin: 0 0 0 75px;
+    margin: 0 0 0 50px;
     padding: 0;
 
     li {
@@ -393,7 +393,7 @@ header {
 
       a {
         color: $txt-light;
-        padding-right: 25px;
+        padding-right: 22px;
 
         &:hover {
           color: $accent-color;
@@ -960,8 +960,8 @@ Google map
 /* ==========================================================================
 RSVP form
 ========================================================================== */
-.rsvp {
-  padding-bottom: 140px;
+section.rsvp {
+  padding: 80px 0;
   .rsvp-form {
     .rsvp-btn {
       padding: 15px 0;
@@ -1310,7 +1310,7 @@ Hospedaje (hotel cards)
 .hotel-content p.hotel-pendiente-aviso {
   font-size: 13px;
   font-style: italic;
-  background: #f8f9fd;
+  background: $section-dark;
   border-radius: 10px;
   padding: 8px 12px;
   margin-bottom: 10px;
@@ -2459,3 +2459,52 @@ body.modo-norteno .hero {
   @media (max-width: 767px) { background-position: center center; }
 }
 .huevo-pirata img { display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,.25)); }
+
+/* ==========================================================================
+Ronda de diseño 2026-11-21: ritmo vertical, fondos alternados, hero y selector de idioma
+========================================================================== */
+// Ritmo vertical uniforme: 80px escritorio / 56px celular en todas las secciones
+@media (max-width: 767px) {
+  .section-padding, section.rsvp { padding: 56px 0; }
+}
+#intro { padding-top: 80px; @media (max-width: 767px) { padding: 56px 0 24px; } }
+.pre-footer { padding-top: 64px; }
+.pre-footer-divider { margin-top: 0; }
+.no-ninos { padding-top: 0; }
+
+// Fondos alternados (blanco / marfil) para separar secciones sin líneas extra
+#invitation, #hospedaje, #instagram { background: $section-dark; }
+#intro, .rsvp, #eng-pics, #chihuahua, #social { background-color: $section-light; }
+.events, .no-ninos { background: $section-dark; }
+
+// Hero: la flecha se encimaba con "Confirma tu asistencia"; en tablet/escritorio basta el botón
+@media (min-width: 768px) {
+  .hero .down-arrow { display: none; }
+  .hero .rsvp-btn { margin-bottom: 64px; }
+}
+
+// Selector de idioma integrado en la barra de navegación (antes flotaba debajo)
+header .idioma-switcher {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  .idioma-switcher__btn {
+    height: 36px;
+    padding: 0 12px;
+    border: 1px solid rgba(255, 255, 255, .55);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, .08);
+    box-shadow: none;
+    font-size: 13px;
+    span { font-size: 17px; }
+    &:hover, &:focus-visible { transform: none; background: rgba(255, 255, 255, .2); }
+  }
+  .idioma-switcher__menu { top: 44px; }
+}
+@media (min-width: 1200px) {
+  header .member-actions { right: 96px; }
+}
+@media (max-width: 1199px) {
+  header .idioma-switcher { right: 62px; }
+}

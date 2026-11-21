@@ -96,7 +96,7 @@
     if (musica || !conMusica) return;
     musica = document.createElement('iframe');
     musica.id = 'musica-nortena';
-    musica.src = 'https://www.youtube.com/embed/IbE7peGTpmc?autoplay=1&loop=1&playlist=IbE7peGTpmc';
+    musica.src = 'https://www.youtube.com/embed/y9qtkAjxU1w?autoplay=1&loop=1&playlist=y9qtkAjxU1w';
     musica.allow = 'autoplay; encrypted-media';
     musica.title = 'Música de fondo';
     musica.setAttribute('aria-hidden', 'true');
@@ -173,7 +173,7 @@
         '<span>' + i.bandera + '</span> ' + i.nombre + '</button></li>';
     });
     cont.innerHTML = html + '</ul>';
-    document.body.appendChild(cont);
+    (document.querySelector('header') || document.body).appendChild(cont);
 
     var btn = cont.querySelector('.idioma-switcher__btn');
     function abrir(si) {
