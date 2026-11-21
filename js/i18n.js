@@ -46,20 +46,57 @@
     document.body.classList.toggle('modo-parsel', si);
     document.querySelectorAll('.huevo-parsel').forEach(function (e) { e.remove(); });
     if (!si) return;
-    EGGS.forEach(function (x, i) {
+    ponerHuevos(EGGS, 'huevo-parsel', function (e, i) {
+      if (i % 2) e.textContent = '🐍';
+      else e.innerHTML = '<img src="img/slytherin.png" alt="" width="70">';
+      e.title = 'Sssaihaassi heth…';
+    });
+  }
+
+  function ponerHuevos(lista, clase, rellenar) {
+    lista.forEach(function (x, i) {
       var cont = document.querySelector(x[0]);
       if (!cont) return;
       if (getComputedStyle(cont).position === 'static') cont.style.position = 'relative';
       var e = document.createElement('span');
-      e.className = 'huevo-parsel';
-      if (i % 2) e.textContent = '🐍';
-      else e.innerHTML = '<img src="img/slytherin.png" alt="" width="70">';
-      e.title = 'Sssaihaassi heth…';
+      e.className = 'huevo-parsel ' + clase;
       e.style.top = x[1]; e.style.left = x[2];
       e.style.animationDelay = (i * 0.7) + 's';
+      rellenar(e, i);
       cont.appendChild(e);
     });
   }
+
+  // Modo Pirata: calaveras escondidas + sombrero de paja en las fotos de los novios
+  var EGGS_PIRATA = [['#invitation', '5%', '88%'], ['#events', '6%', '5%'], ['#rsvp', '8%', '90%'],
+    ['#hospedaje', '2%', '6%'], ['footer', '10%', '30%']];
+  var SOMBREROS = { 'IMG_2317.jpg': [11, 32, 36], 'DSD_0214.jpg': [7, 38, 34] }; // top%, left%, ancho%
+  function piratas(si) {
+    document.body.classList.toggle('modo-pirata', si);
+    document.querySelectorAll('.huevo-pirata, .sombrero-luffy').forEach(function (e) { e.remove(); });
+    if (!si) return;
+    ponerHuevos(EGGS_PIRATA, 'huevo-pirata', function (e, i) {
+      if (i % 2) e.textContent = '🏴‍☠️';
+      else e.innerHTML = '<img src="img/onepiece.png" alt="" width="80">';
+      e.title = '¡Voy a ser el Rey de los Piratas!';
+    });
+    Object.keys(SOMBREROS).forEach(function (foto) {
+      document.querySelectorAll('img[src="img/' + foto + '"]').forEach(function (img) {
+        var v = SOMBREROS[foto], w = img.parentNode;
+        if (!w.classList.contains('foto-con-sombrero')) {
+          w = document.createElement('span');
+          w.className = 'foto-con-sombrero';
+          img.parentNode.insertBefore(w, img);
+          w.appendChild(img);
+        }
+        var h = document.createElement('img');
+        h.src = 'img/sombrero.svg'; h.alt = ''; h.className = 'sombrero-luffy';
+        h.style.top = v[0] + '%'; h.style.left = v[1] + '%'; h.style.width = v[2] + '%';
+        w.appendChild(h);
+      });
+    });
+  }
+
 
   function traducir(texto, id) {
     if (id === 'es') return texto;
@@ -101,6 +138,7 @@
     var info = IDIOMAS.filter(function (i) { return i.id === id; })[0] || IDIOMAS[0];
     document.documentElement.setAttribute('lang', info.lang);
     serpientes(id === 'par');
+    piratas(id === 'pir');
     var btn = document.querySelector('.idioma-switcher__btn');
     if (btn) btn.textContent = info.bandera;
     document.querySelectorAll('.idioma-switcher__opcion').forEach(function (o) {
