@@ -52,7 +52,8 @@
       if (getComputedStyle(cont).position === 'static') cont.style.position = 'relative';
       var e = document.createElement('span');
       e.className = 'huevo-parsel';
-      e.textContent = i % 2 ? '🐍' : '🐍💚';
+      if (i % 2) e.textContent = '🐍';
+      else e.innerHTML = '<img src="img/slytherin.png" alt="" width="70">';
       e.title = 'Sssaihaassi heth…';
       e.style.top = x[1]; e.style.left = x[2];
       e.style.animationDelay = (i * 0.7) + 's';
