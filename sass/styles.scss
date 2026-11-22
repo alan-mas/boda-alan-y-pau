@@ -1985,6 +1985,44 @@ Mesa de regalos
     opacity: .45;
   }
 }
+.rsvp-grupo {
+  text-align: left;
+  margin: 5px 0 10px;
+  .rsvp-grupo-intro { font-weight: 600; margin-bottom: 4px; }
+  .rsvp-grupo-aviso { font-size: 13px; color: $txt-secondary; margin-bottom: 4px; }
+  .rsvp-grupo-ayuda { font-size: 13px; color: $txt-secondary; margin-bottom: 12px; }
+}
+.rsvp-integrantes {
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.rsvp-persona {
+  border: 1px solid rgba(0, 0, 0, .1);
+  border-radius: 8px;
+  padding: 10px 14px 2px;
+  margin-bottom: 10px;
+  background: #fff;
+  &.rsvp-persona-masuno { border-style: dashed; margin-top: -4px; }
+  .rsvp-persona-nombre { font-weight: 600; margin: 0 0 8px; }
+  .rsvp-persona-nota { font-size: 12px; color: $txt-secondary; margin: -4px 0 8px; }
+  .rsvp-persona-eventos { display: flex; flex-wrap: wrap; gap: 0 22px; }
+}
+.rsvp-resumen {
+  text-align: left;
+  background: rgba(232, 202, 111, 0.12);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 5px 0 12px;
+  ul { margin: 0 0 10px; padding-left: 20px; }
+  .rsvp-resumen-pregunta { font-weight: 600; margin: 6px 0 0; }
+}
+.rsvp-btn-secundario {
+  background: transparent !important;
+  color: $txt-secondary !important;
+  border: 1px solid rgba(0, 0, 0, .2) !important;
+  margin-left: 8px;
+}
 .rsvp-evento-hint {
   display: none;
   font-size: 12px;

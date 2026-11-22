@@ -60,14 +60,14 @@ Abrir los `.html` directo en el navegador; no hace falta servidor.
 - `google-apps-script/test-rsvp.sh` — pipeline de pruebas reales contra el endpoint desplegado (usar solo códigos de prueba desechables).
 
 ### Hojas del Sheet
-- **Invitados** — un código de invitación de 6 caracteres por invitado (generado con `generarCodigos()`); col. I "Asiste Boda", J "Asiste Tornaboda".
+- **Invitados** — una fila por persona: A Nombre · B Teléfono · C Familia · D Código (del grupo) · E Confirmado · F/G sin uso · H +1 · I Fecha · J Asiste Boda · K Asiste Tornaboda · L +1 Boda · M +1 Tornaboda.
 - **Confirmaciones** — bitácora de RSVPs; col. E "Asiste Boda", F "Asiste Tornaboda".
 - **Regalos** — `ID · Nombre · Descripcion · Foto · Tipo(unico/fondo) · Precio · Meta · Recaudado · Estado · Comprador · Categoria · Link`. "Link" (col. L) sale en la tarjeta como "Link de referencia para chismosos".
 - **Pagos_Regalos** — bitácora privada de pagos (incluye teléfono y nota).
 
 ## Reglas de negocio (decididas por Alan, no cambiar sin preguntar)
 
-- **RSVP:** el **código de invitación es el único control**; el nombre que escribe el invitado se guarda solo como referencia. **No hay campo de acompañantes** (se manejan a mano en Excel). Boda y tornaboda se confirman por separado y **no se puede confirmar tornaboda sin boda** (validado en frontend y en backend). Evento solo para adultos.
+- **RSVP por grupo familiar (desde 2026-11-21):** un código por grupo, repetido en la col. D de cada integrante. El invitado escribe el código, ve a los integrantes y marca boda/tornaboda **por persona** (tornaboda requiere boda); los no marcados quedan "NO". Pases personales e intransferibles. **+1** solo para quien tiene `1` en la col. H (sin nombre; se guarda en L/M). Un código se usa una sola vez. Grupos armados con `reorganizarGruposInvitados()` (filas por color hasta "Alma Rosa Salas Reyes"; después por col. C). Evento solo para adultos.
 - **Regalos:** dos tipos — **"fondo"** (meta acumulable, barra de progreso, varios aportan) y **"único"** (precio fijo, el primero que paga se lo queda; `LockService` evita doble venta). Checkout pide **nombre + teléfono, sin correo**. El invitado puede dejar una nota que solo ve la pareja.
 - Rendimiento de regalos: caché servidor (`CacheService`, 30 s) + `sessionStorage` en cliente + skeleton UI.
 
