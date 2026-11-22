@@ -103,6 +103,23 @@
     });
     audio.addEventListener('play', function () { btn.classList.add('sonando'); });
     audio.addEventListener('pause', function () { btn.classList.remove('sonando'); });
+    var pos = document.getElementById('cancion-nortena-pos');
+    var actual = document.getElementById('cn-actual');
+    var total = document.getElementById('cn-total');
+    var arrastrando = false;
+    function fmt(t) { t = Math.floor(t || 0); return Math.floor(t / 60) + ':' + ('0' + t % 60).slice(-2); }
+    function pintar() {
+      var pct = audio.duration ? (pos.value / audio.duration) * 100 : 0;
+      pos.style.setProperty('--avance', pct + '%');
+      actual.textContent = fmt(pos.value);
+    }
+    audio.addEventListener('loadedmetadata', function () { pos.max = audio.duration; total.textContent = fmt(audio.duration); pintar(); });
+    audio.addEventListener('timeupdate', function () { if (!arrastrando) { pos.value = audio.currentTime; pintar(); } });
+    pos.addEventListener('input', function () { arrastrando = true; pintar(); });
+    pos.addEventListener('change', function () { audio.currentTime = pos.value; arrastrando = false; });
+    document.getElementById('cancion-nortena-reinicio').addEventListener('click', function () {
+      audio.currentTime = 0; pos.value = 0; pintar();
+    });
   })();
 
   function traducir(texto, id) {

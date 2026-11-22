@@ -59,7 +59,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/jquery.fancybox.css">
     <link rel="stylesheet" href="css/flexslider.css">
-    <link rel="stylesheet" href="css/styles.min.css?v=20261121m">
+    <link rel="stylesheet" href="css/styles.min.css?v=20261121n">
     <link rel="stylesheet" href="css/queries.css?v=20261121b">
     <link rel="stylesheet" href="node_modules/animate.css/animate.min.css" onerror="loadCssFromCDN('animate.css')">
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" onerror="loadCssFromCDN('font-awesome.css')">
@@ -129,7 +129,13 @@
                         <span class="cn-play"><i class="fa fa-play-circle-o" aria-hidden="true"></i> Reproducir música</span>
                         <span class="cn-pause"><i class="fa fa-pause-circle-o" aria-hidden="true"></i> Pausar música</span>
                     </button>
-                    <audio id="cancion-nortena" src="cancion-dedicada.mp3" preload="none" loop></audio>
+                    <div class="cancion-nortena__barra">
+                        <button type="button" id="cancion-nortena-reinicio" class="cancion-nortena__reinicio" aria-label="Desde el principio"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
+                        <span id="cn-actual" class="cn-tiempo">0:00</span>
+                        <input type="range" id="cancion-nortena-pos" min="0" max="0" step="0.1" value="0" aria-label="Posición de la canción">
+                        <span id="cn-total" class="cn-tiempo">0:00</span>
+                    </div>
+                    <audio id="cancion-nortena" src="cancion-dedicada.mp3" preload="metadata" loop></audio>
                 </div>
                 <h3>¡Nos casamos!</h3>
                 <p>Las fechas son el 27 y 28 de Febrero de 2027 y nos encantaría que formaras parte
@@ -1105,6 +1111,6 @@
 <script src="js/vendor/ouical.js"></script>
 <script src="js/scripts.min.js?v=20261025"></script>
 <script src="js/rsvp.js?v=20261121"></script>
-<script src="js/i18n.js?v=20261121k"></script>
+<script src="js/i18n.js?v=20261121l"></script>
 </body>
 </html>
