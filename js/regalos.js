@@ -8,6 +8,7 @@
   var MONTO_MINIMO = 50;
 
   var filtroActivo = 'todos';
+  var textoBusqueda = '';
   var carrito = []; // [{ id, nombre, tipo, monto, foto }]
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -66,6 +67,15 @@
         if (!pill) return;
         filtroActivo = pill.getAttribute('data-filtro');
         actualizarPillsActivas();
+        renderizarGrid();
+      });
+    }
+
+    // ── buscador por nombre/descripción ──
+    var buscador = document.getElementById('regalos-buscador');
+    if (buscador) {
+      buscador.addEventListener('input', function () {
+        textoBusqueda = normalizarTexto(buscador.value);
         renderizarGrid();
       });
     }
@@ -208,11 +218,26 @@
     });
   }
 
+  // Minúsculas y sin acentos, para que "japon" encuentre "Japón".
+  function normalizarTexto(t) {
+    return String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+  }
+
   function renderizarGrid() {
     var regalos = window.__regalos || [];
     var filtrados = filtroActivo === 'todos'
       ? regalos
       : regalos.filter(function (r) { return (r.categoria || 'Otros') === filtroActivo; });
+
+    if (textoBusqueda) {
+      filtrados = filtrados.filter(function (r) {
+        return normalizarTexto((r.nombre || '') + ' ' + (r.descripcion || '') + ' ' + (r.categoria || '')).indexOf(textoBusqueda) !== -1;
+      });
+      if (!filtrados.length) {
+        mostrarMensaje('No encontramos ese regalo 🙈 Prueba con otra palabra.');
+        return;
+      }
+    }
 
     if (!filtrados.length) {
       mostrarMensaje('No hay regalos en esta categoría todavía.');

@@ -2107,6 +2107,27 @@ Mesa de regalos
   100% { background-position: -200% 0; }
 }
 
+/* Buscador de regalos */
+#regalos-buscador-wrap {
+  margin-bottom: 16px;
+}
+#regalos-buscador {
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: 1px solid $section-dark;
+  background: #fff;
+  color: $txt-secondary;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+
+  &:focus {
+    border-color: $accent-color;
+    box-shadow: 0 0 0 3px rgba($accent-color, 0.15);
+  }
+}
+
 /* Pestañas de filtro por categoría */
 #regalos-filtros {
   margin-bottom: 30px;
