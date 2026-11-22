@@ -2314,6 +2314,86 @@ Panel de Control (dashboard.html)
   font-size: 13px;
   color: $txt-accent;
 }
+.panel-card-detalle {
+  font-size: 11px;
+  color: $txt-accent;
+  margin-top: 4px;
+}
+.panel-seccion {
+  margin: 10px 0 12px;
+  text-align: left;
+}
+.panel-tabla-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+
+  .regalo-filtro-pill { padding: 6px 16px; font-size: 13px; }
+}
+.panel-tabla-wrap {
+  overflow-x: auto;
+  background: #fff;
+  border: 1px solid $keyline-color;
+  border-radius: 12px;
+}
+.panel-tabla {
+  width: 100%;
+  min-width: 560px;
+  font-size: 14px;
+  color: $txt-secondary;
+
+  th, td {
+    padding: 10px 12px;
+    border-bottom: 1px solid $keyline-color;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    font-size: 12px;
+    color: $txt-accent;
+    font-weight: normal;
+    white-space: nowrap;
+  }
+  td:not(:first-child) { white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+  tr.completo td { background: rgba(46, 160, 67, 0.06); }
+}
+#panel-buscar-invitado {
+  flex: 1 1 260px;
+  padding: 10px 18px;
+  border-radius: 30px;
+  border: 1px solid $keyline-color;
+  font-size: 14px;
+  outline: none;
+  &:focus { border-color: $accent-color; }
+}
+.panel-tabla-invitados {
+  max-height: 420px;
+  overflow-y: auto;
+  thead th { position: sticky; top: 0; background: #fff; }
+}
+.panel-estado {
+  font-size: 12px;
+  &.pendiente { color: $txt-accent; }
+  &.no { color: #c0392b; }
+}
+.panel-tabla-cat {
+  font-size: 11px;
+  color: $txt-accent;
+}
+.panel-tabla-barra {
+  margin-top: 6px;
+  height: 6px;
+}
+.panel-tabla-quienes {
+  font-size: 12px;
+  font-style: italic;
+  color: $txt-accent;
+  margin-top: 4px;
+}
 .panel-progreso-wrap {
   margin-bottom: 20px;
 }

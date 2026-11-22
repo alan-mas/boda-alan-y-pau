@@ -15,7 +15,7 @@
 
     <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.min.css">
+    <link rel="stylesheet" href="css/styles.min.css?v=20261121c">
     <link rel="stylesheet" href="css/queries.css">
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css"
           onerror="this.href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'">
@@ -59,7 +59,32 @@
             </div>
         </div>
 
+        <h5 class="panel-seccion">💌 Invitados</h5>
         <div class="row" id="panel-cards"></div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel-tabla-head">
+                    <input type="search" id="panel-buscar-invitado" placeholder="Busca un invitado, familia o código… (ej. Myrna)" autocomplete="off">
+                    <div id="panel-filtro-invitados">
+                        <span class="regalo-filtro-pill activo" data-f="todos">Todos</span>
+                        <span class="regalo-filtro-pill" data-f="pendientes">Por responder</span>
+                        <span class="regalo-filtro-pill" data-f="si">Van</span>
+                        <span class="regalo-filtro-pill" data-f="no">No van</span>
+                    </div>
+                </div>
+                <div class="panel-tabla-wrap panel-tabla-invitados">
+                    <table class="panel-tabla">
+                        <thead><tr><th>Invitado</th><th>Familia</th><th>Código</th><th>Boda</th><th>Tornaboda</th><th>Respondió</th></tr></thead>
+                        <tbody id="panel-tabla-invitados"></tbody>
+                    </table>
+                </div>
+                <p class="panel-card-detalle" id="panel-invitados-conteo"></p>
+            </div>
+        </div>
+
+        <h5 class="panel-seccion">🎁 Mesa de regalos</h5>
+        <div class="row" id="panel-cards-regalos"></div>
 
         <div class="row" style="margin-top:20px;">
             <div class="col-md-6 col-md-offset-3">
@@ -69,6 +94,25 @@
                         <div class="regalo-progress-fill" id="panel-progreso-fill" style="width:0%;"></div>
                     </div>
                     <p class="regalo-progress-label" id="panel-progreso-texto"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top:20px;">
+            <div class="col-md-12">
+                <div class="panel-tabla-head">
+                    <h5>Detalle por regalo</h5>
+                    <div id="panel-filtro-regalos">
+                        <span class="regalo-filtro-pill activo" data-f="todos">Todos</span>
+                        <span class="regalo-filtro-pill" data-f="faltan">Faltan</span>
+                        <span class="regalo-filtro-pill" data-f="completos">Completos</span>
+                    </div>
+                </div>
+                <div class="panel-tabla-wrap">
+                    <table class="panel-tabla">
+                        <thead><tr><th>Regalo</th><th>Recaudado</th><th>Meta</th><th>Falta</th><th>Aportaciones</th></tr></thead>
+                        <tbody id="panel-tabla-regalos"></tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -105,6 +149,6 @@
 <script src="js/vendor/jquery-1.11.2.min.js"
         onerror="document.write('<script src=\'https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js\'><\/script>')"></script>
 <script src="js/vendor/bootstrap.min.js"></script>
-<script src="js/dashboard.js"></script>
+<script src="js/dashboard.js?v=20261121c"></script>
 </body>
 </html>
