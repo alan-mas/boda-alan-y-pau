@@ -2499,3 +2499,35 @@ body.modo-norteno .cancion-nortena {
     &:focus-visible { outline: 2px solid #999; outline-offset: 4px; }
   }
 }
+
+// Barra de navegación: los textos largos (Norteño) ya no se enciman; si no caben, bajan a otra fila
+@media (min-width: 992px) {
+  header .header-content { display: flex; align-items: center; gap: 28px; }
+  header .header-nav { flex: 1; min-width: 0; }
+  header nav { display: flex; flex-wrap: wrap; align-items: center; column-gap: 28px; row-gap: 14px; }
+  header ul.primary-nav { margin: 0; white-space: nowrap; }
+  header .member-actions { position: static; margin: 0 0 0 auto; white-space: nowrap; }
+}
+
+// Selector de idioma dentro de la barra, alineado y del mismo tamaño que "¿Vienes?"
+header .idioma-switcher {
+  position: relative;
+  top: auto;
+  right: auto;
+  flex: none;
+  .idioma-switcher__btn {
+    height: 34px;
+    padding: 0 12px;
+    border: 1px solid rgba(255, 255, 255, .7);
+    border-radius: 17px;
+    background: transparent;
+    box-shadow: none;
+    font-size: 13px;
+    span { font-size: 16px; }
+    &:hover, &:focus-visible { transform: none; background: rgba(255, 255, 255, .15); }
+  }
+  .idioma-switcher__menu { top: 42px; }
+}
+@media (max-width: 991px) {
+  header .idioma-switcher { position: absolute; top: 50%; right: 64px; transform: translateY(-50%); }
+}

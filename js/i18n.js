@@ -10,9 +10,11 @@
     { id: 'es',  bandera: '🇲🇽', nombre: 'Español',  lang: 'es', sigla: 'ES' },
     { id: 'en',  bandera: '🇺🇸', nombre: 'English',  lang: 'en', sigla: 'EN' },
     { id: 'nor', bandera: '🤠', nombre: 'Norteño',  lang: 'es-MX', sigla: 'NOR' },
-    { id: 'pir', bandera: '🏴‍☠️', nombre: 'Pirata',   lang: 'es', sigla: 'PIR' },
-    { id: 'par', bandera: '🐍', nombre: 'Pársel',   lang: 'es', sigla: 'PAR' }
+    { id: 'pir', bandera: '🏴‍☠️', nombre: 'Pirata',   lang: 'es', sigla: 'PIR', oculto: true },
+    { id: 'par', bandera: '🐍', nombre: 'Pársel',   lang: 'es', sigla: 'PAR', oculto: true }
   ];
+  // oculto: true = se conserva todo el código pero no aparece en el menú (quitar para reactivarlo)
+  var VISIBLES = IDIOMAS.filter(function (i) { return !i.oculto; });
   var CLAVE = 'boda_idioma';
   var ATRIBUTOS = ['placeholder', 'title', 'aria-label', 'alt'];
   var VERSION = '20261121';
@@ -185,12 +187,12 @@
     cont.className = 'idioma-switcher';
     var html = '<button type="button" class="idioma-switcher__btn" aria-haspopup="true" aria-expanded="false" aria-label="Cambiar idioma / Change language">🇲🇽</button>' +
       '<ul class="idioma-switcher__menu" role="menu">';
-    IDIOMAS.forEach(function (i) {
+    VISIBLES.forEach(function (i) {
       html += '<li><button type="button" role="menuitemradio" class="idioma-switcher__opcion" data-idioma="' + i.id + '">' +
         '<span>' + i.bandera + '</span> ' + i.nombre + '</button></li>';
     });
     cont.innerHTML = html + '</ul>';
-    document.body.appendChild(cont);
+    (document.querySelector('header .header-content') || document.body).appendChild(cont);
 
     var btn = cont.querySelector('.idioma-switcher__btn');
     function abrir(si) {
@@ -210,6 +212,7 @@
     construirSwitcher();
     var guardado = 'es';
     try { guardado = localStorage.getItem(CLAVE) || 'es'; } catch (e) {}
+    if (!VISIBLES.some(function (i) { return i.id === guardado; })) guardado = 'es';
     if (guardado !== 'es') cambiar(guardado); else aplicar('es');
   }
 
