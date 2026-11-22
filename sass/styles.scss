@@ -2747,3 +2747,10 @@ header .idioma-switcher {
 
   h4 { margin-bottom: 8px; }
 }
+.aportacion-aviso {
+  margin-top: 18px;
+  font-size: 14px;
+  color: $txt-accent;
+
+  a { color: $accent-color; font-weight: $semibold; text-decoration: underline; }
+}

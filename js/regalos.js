@@ -648,6 +648,13 @@
   }
   // ── Apartado final: copiar CLABE y mensaje a los novios ──
   document.addEventListener('DOMContentLoaded', function () {
+    var avisoLink = document.getElementById('aportacion-aviso-link');
+    if (avisoLink) {
+      avisoLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('aportacion-libre').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
     var copiarBtn = document.getElementById('aportacion-copiar-btn');
     if (copiarBtn) {
       copiarBtn.addEventListener('click', function () {
