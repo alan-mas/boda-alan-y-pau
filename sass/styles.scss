@@ -2500,11 +2500,11 @@ body.modo-norteno .cancion-nortena {
   }
 }
 
-// Barra de navegación: los textos largos (Norteño) ya no se enciman; si no caben, bajan a otra fila
-@media (min-width: 992px) {
+// Barra de navegación en una sola fila desde 1280px (abajo de eso, menú hamburguesa en queries.css)
+@media (min-width: 1280px) {
   header .header-content { display: flex; align-items: center; gap: 28px; }
   header .header-nav { flex: 1; min-width: 0; }
-  header nav { display: flex; flex-wrap: wrap; align-items: center; column-gap: 28px; row-gap: 14px; }
+  header nav { display: flex; flex-wrap: nowrap; align-items: center; column-gap: 28px; }
   header ul.primary-nav { margin: 0; white-space: nowrap; }
   header .member-actions { position: static; margin: 0 0 0 auto; white-space: nowrap; }
 }
@@ -2528,6 +2528,6 @@ header .idioma-switcher {
   }
   .idioma-switcher__menu { top: 42px; }
 }
-@media (max-width: 991px) {
+@media (max-width: 1279px) {
   header .idioma-switcher { position: absolute; top: 50%; right: 64px; transform: translateY(-50%); }
 }

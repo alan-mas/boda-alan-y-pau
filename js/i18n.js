@@ -15,6 +15,13 @@
   ];
   // oculto: true = se conserva todo el código pero no aparece en el menú (quitar para reactivarlo)
   var VISIBLES = IDIOMAS.filter(function (i) { return !i.oculto; });
+  // Nombres cortos solo para el menú de arriba (para que quepa en una fila como en español)
+  var MENU_CORTO = {
+    nor: {
+      'Cómo nos conocimos': 'Nos topamos', 'Eventos': 'Pachangones', 'Compromiso': 'El anillo',
+      'Vestimenta': 'La garra', 'Itinerario': 'El borlote', 'Hospedaje': 'Posada', 'Regalos': 'Regalitos'
+    }
+  };
   var CLAVE = 'boda_idioma';
   var ATRIBUTOS = ['placeholder', 'title', 'aria-label', 'alt'];
   var VERSION = '20261121';
@@ -146,7 +153,7 @@
     var n;
     while ((n = walker.nextNode())) {
       var m = n.nodeValue.match(/^(\s*)([\s\S]*?)(\s*)$/);
-      nodos.push({ nodo: n, lead: m[1], texto: normalizar(m[2]), trail: m[3] });
+      nodos.push({ nodo: n, lead: m[1], texto: normalizar(m[2]), trail: m[3], menu: !!n.parentNode.closest('header nav') });
     }
     ATRIBUTOS.forEach(function (attr) {
       document.querySelectorAll('[' + attr + ']').forEach(function (el) {
@@ -159,7 +166,10 @@
 
   function aplicar(id, click) {
     actual = id;
-    nodos.forEach(function (x) { x.nodo.nodeValue = x.lead + traducir(x.texto, id) + x.trail; });
+    nodos.forEach(function (x) {
+      var corto = x.menu && MENU_CORTO[id] && MENU_CORTO[id][x.texto];
+      x.nodo.nodeValue = x.lead + (corto || traducir(x.texto, id)) + x.trail;
+    });
     atributos.forEach(function (x) { x.el.setAttribute(x.attr, traducir(x.texto, id)); });
     var info = IDIOMAS.filter(function (i) { return i.id === id; })[0] || IDIOMAS[0];
     document.documentElement.setAttribute('lang', info.lang);
