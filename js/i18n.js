@@ -81,9 +81,9 @@
     });
   }
 
-  // Modo Norteño: fotos con texana (el banner cambia por CSS) + "Hecha Pa' Mí" de fondo
+  // Modo Norteño: fotos con texana (el banner cambia por CSS) + botón "Tu canción, mi reina" (mp3 local)
   var FOTOS_NORTENAS = { 'img/IMG_2317.jpg': 'img/norteno/alan.jpg', 'img/DSD_0214.jpg': 'img/norteno/pau.jpg' };
-  function nortenos(si, conMusica) {
+  function nortenos(si) {
     document.body.classList.toggle('modo-norteno', si);
     Object.keys(FOTOS_NORTENAS).forEach(function (orig) {
       document.querySelectorAll('img[data-foto-orig="' + orig + '"], img[src="' + orig + '"]').forEach(function (img) {
@@ -91,19 +91,19 @@
         img.src = si ? FOTOS_NORTENAS[orig] : orig;
       });
     });
-    var musica = document.getElementById('musica-nortena');
-    if (!si) { if (musica) musica.remove(); return; }
-    if (musica || !conMusica) return;
-    musica = document.createElement('iframe');
-    musica.id = 'musica-nortena';
-    musica.src = 'https://www.youtube.com/embed/y9qtkAjxU1w?autoplay=1&loop=1&playlist=y9qtkAjxU1w';
-    musica.allow = 'autoplay; encrypted-media';
-    musica.title = 'Música de fondo';
-    musica.setAttribute('aria-hidden', 'true');
-    musica.style.cssText = 'position:fixed;width:1px;height:1px;left:-9999px;bottom:0;border:0;opacity:0;';
-    document.body.appendChild(musica);
+    var audio = document.getElementById('cancion-nortena');
+    if (!si && audio && !audio.paused) audio.pause();
   }
-
+  (function () {
+    var audio = document.getElementById('cancion-nortena');
+    var btn = document.getElementById('cancion-nortena-btn');
+    if (!audio || !btn) return;
+    btn.addEventListener('click', function () {
+      if (audio.paused) audio.play(); else audio.pause();
+    });
+    audio.addEventListener('play', function () { btn.classList.add('sonando'); });
+    audio.addEventListener('pause', function () { btn.classList.remove('sonando'); });
+  })();
 
   function traducir(texto, id) {
     if (id === 'es') return texto;
@@ -146,7 +146,7 @@
     document.documentElement.setAttribute('lang', info.lang);
     serpientes(id === 'par');
     piratas(id === 'pir');
-    nortenos(id === 'nor', click);
+    nortenos(id === 'nor');
     var btn = document.querySelector('.idioma-switcher__btn');
     if (btn) btn.innerHTML = '<span>' + info.bandera + '</span> ' + info.sigla + ' <small>▾</small>';
     document.querySelectorAll('.idioma-switcher__opcion').forEach(function (o) {
@@ -173,7 +173,7 @@
         '<span>' + i.bandera + '</span> ' + i.nombre + '</button></li>';
     });
     cont.innerHTML = html + '</ul>';
-    (document.querySelector('header') || document.body).appendChild(cont);
+    document.body.appendChild(cont);
 
     var btn = cont.querySelector('.idioma-switcher__btn');
     function abrir(si) {
