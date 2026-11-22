@@ -2017,11 +2017,31 @@ Mesa de regalos
   ul { margin: 0 0 10px; padding-left: 20px; }
   .rsvp-resumen-pregunta { font-weight: 600; margin: 6px 0 0; }
 }
+#rsvp-paso-codigo .form-input-group { max-width: 420px; }
+.rsvp-acciones {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 12px;
+  max-width: 420px;
+  margin: 8px auto 0;
+  [hidden] { display: none !important; }
+  .rsvp-btn { flex: 1 1 auto; width: auto !important; margin: 0; }
+}
 .rsvp-btn-secundario {
-  background: transparent !important;
-  color: $txt-secondary !important;
-  border: 1px solid rgba(0, 0, 0, .2) !important;
-  margin-left: 8px;
+  flex: 0 0 auto;
+  padding: 0 22px;
+  border-radius: 3px;
+  border: 1px solid $keyline-color;
+  background: #fff;
+  color: $txt-secondary;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: border-color .2s, color .2s;
+  i { margin-right: 6px; font-size: 11px; }
+  &:hover, &:focus { border-color: $accent-color; color: $accent-color; outline: none; }
 }
 .rsvp-evento-hint {
   display: none;

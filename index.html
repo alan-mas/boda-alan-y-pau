@@ -59,7 +59,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/jquery.fancybox.css">
     <link rel="stylesheet" href="css/flexslider.css">
-    <link rel="stylesheet" href="css/styles.min.css?v=20261121s">
+    <link rel="stylesheet" href="css/styles.min.css?v=20261121t">
     <link rel="stylesheet" href="css/queries.css?v=20261121d">
     <link rel="stylesheet" href="node_modules/animate.css/animate.min.css" onerror="loadCssFromCDN('animate.css')">
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" onerror="loadCssFromCDN('font-awesome.css')">
@@ -500,7 +500,7 @@
                       action=""
                       method="POST">
                     <div class="row" id="rsvp-paso-codigo">
-                        <div class="col-md-6 col-md-offset-3">
+                        <div class="col-md-12">
                             <div class="form-input-group">
                                 <i class="fa fa-key"></i><input type="text" name="invite_code" id="invite_code"
                                                                 class="" maxlength="20"
@@ -519,8 +519,10 @@
                     <div class="row">
                         <div class="col-md-12" id="alert-wrapper"></div>
                     </div>
-                    <button class="btn-fill rsvp-btn" id="rsvp-btn-principal">Buscar mi invitación</button>
-                    <button type="button" class="btn-fill rsvp-btn-secundario" id="rsvp-btn-volver" hidden>Volver</button>
+                    <div class="rsvp-acciones">
+                        <button type="button" class="rsvp-btn-secundario" id="rsvp-btn-volver" hidden><i class="fa fa-arrow-left"></i> Volver</button>
+                        <button class="btn-fill rsvp-btn" id="rsvp-btn-principal">Buscar mi invitación</button>
+                    </div>
                 </form>
             </div>
         </div>
