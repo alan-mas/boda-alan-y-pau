@@ -100,6 +100,7 @@
     });
     renderizarListaRSVP(rsvp.ultimasConfirmaciones || []);
     renderizarListaRegalos(regalos.ultimosPagos || []);
+    renderizarMensajes(data.mensajes || []);
   }
 
   function tarjetasHtml(tarjetas) {
@@ -246,6 +247,23 @@
           '<span class="panel-activity-fecha">' + formatearFecha(item.fecha) + '</span>' +
         '</li>' +
         (item.nota ? '<li class="panel-activity-nota">“' + escaparHtml(item.nota) + '”</li>' : '')
+      );
+    }).join('');
+  }
+
+  function renderizarMensajes(items) {
+    var contenedor = document.getElementById('panel-lista-mensajes');
+    if (!items.length) {
+      contenedor.innerHTML = '<li class="panel-activity-empty">Todavía no hay mensajes.</li>';
+      return;
+    }
+    contenedor.innerHTML = items.map(function (item) {
+      return (
+        '<li class="panel-activity-item">' +
+          '<i class="fa fa-envelope-o"></i> <span>' + escaparHtml(item.nombre) + '</span>' +
+          '<span class="panel-activity-fecha">' + formatearFecha(item.fecha) + '</span>' +
+        '</li>' +
+        '<li class="panel-activity-nota">“' + escaparHtml(item.mensaje) + '”</li>'
       );
     }).join('');
   }

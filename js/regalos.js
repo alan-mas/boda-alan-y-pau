@@ -5,7 +5,7 @@
   var API_URL = 'https://script.google.com/macros/s/AKfycbxr8CjybMSTM_ppJaHLtn5r4P1qLd7mz6bO5Sn7YsU4Qfdh7dMGIxG6n5nOb8CNnbLD/exec';
 
   var MONTOS_SUGERIDOS = [500, 1000, 2000];
-  var MONTO_MINIMO = 50;
+  var MONTO_MINIMO = 500; // igual que MONTO_MINIMO_APORTACION en Code.gs
 
   var filtroActivo = 'todos';
   var textoBusqueda = '';
@@ -646,4 +646,63 @@
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;');
   }
+  // ── Apartado final: copiar CLABE y mensaje a los novios ──
+  document.addEventListener('DOMContentLoaded', function () {
+    var copiarBtn = document.getElementById('aportacion-copiar-btn');
+    if (copiarBtn) {
+      copiarBtn.addEventListener('click', function () {
+        var clabe = document.getElementById('aportacion-clabe').textContent.replace(/\s/g, '');
+        var listo = function () {
+          var label = copiarBtn.querySelector('span');
+          label.textContent = '¡Copiada!';
+          setTimeout(function () { label.textContent = 'Copiar'; }, 2000);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(clabe).then(listo, function () { window.prompt('Copia la CLABE:', clabe); });
+        } else {
+          window.prompt('Copia la CLABE:', clabe);
+        }
+      });
+    }
+
+    var enviarBtn = document.getElementById('mensaje-enviar-btn');
+    if (!enviarBtn) return;
+    if (window.jQuery) {
+      jQuery('#mensaje-modal').on('show.bs.modal', function () {
+        document.getElementById('mensaje-form-wrap').style.display = '';
+        document.getElementById('mensaje-gracias').style.display = 'none';
+        document.getElementById('mensaje-alert').innerHTML = '';
+      });
+    }
+    enviarBtn.addEventListener('click', function () {
+      var nombre = document.getElementById('mensaje-nombre').value.trim();
+      var mensaje = document.getElementById('mensaje-texto').value.trim();
+      var alertBox = document.getElementById('mensaje-alert');
+      if (!nombre || !mensaje) {
+        alertBox.innerHTML = mensajeError('Escribe tu nombre y tu mensaje.');
+        return;
+      }
+      enviarBtn.disabled = true;
+      enviarBtn.innerHTML = 'Enviando&hellip;';
+      fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ accion: 'enviarMensaje', nombre: nombre, mensaje: mensaje })
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (!data.success) throw new Error(data.message);
+          document.getElementById('mensaje-texto').value = '';
+          document.getElementById('mensaje-form-wrap').style.display = 'none';
+          document.getElementById('mensaje-gracias').style.display = '';
+        })
+        .catch(function (err) {
+          alertBox.innerHTML = mensajeError((err && err.message) || 'No se pudo enviar. Intenta de nuevo.');
+        })
+        .finally(function () {
+          enviarBtn.disabled = false;
+          enviarBtn.innerHTML = 'Enviar mensaje';
+        });
+    });
+  });
 })();

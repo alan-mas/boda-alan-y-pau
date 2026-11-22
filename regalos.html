@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.min.css?v=20261121b">
+    <link rel="stylesheet" href="css/styles.min.css?v=20261122m">
     <link rel="stylesheet" href="css/queries.css">
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css"
           onerror="this.href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'">
@@ -75,6 +75,84 @@
         </div>
     </div>
 </section>
+
+<!-- APARTADO FINAL: TRANSFERENCIA LIBRE + MENSAJE A LOS NOVIOS (sin tracking) -->
+<section id="aportacion-libre" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="aportacion-card text-center">
+                    <h3>¿Quieres sumar a nuestra aventura de otra forma?</h3>
+                    <p>
+                        Si quieres regalarnos algo del viaje que no está en la lista, o simplemente ayudarnos
+                        a juntar para esta nueva etapa, también puedes hacerlo con una transferencia,
+                        por la cantidad que tú quieras.
+                    </p>
+                    <p>
+                        Cada aportación, grande o pequeña, nos llena el corazón y nos hace sentir que
+                        vienen con nosotros a la aventura. Gracias por ser parte de ella.
+                    </p>
+
+                    <ul class="aportacion-datos">
+                        <li><span>Institución</span><strong>Mercado Pago W</strong></li>
+                        <li><span>Beneficiario</span><strong>Alan Manuel Acosta Salas</strong></li>
+                        <li>
+                            <span>CLABE</span>
+                            <strong id="aportacion-clabe">722969010448851110</strong>
+                            <button type="button" class="aportacion-copiar" id="aportacion-copiar-btn">
+                                <i class="fa fa-clone"></i> <span>Copiar</span>
+                            </button>
+                        </li>
+                    </ul>
+                    <p class="aportacion-hint">
+                        Pon tu nombre en el concepto de la transferencia, así sabremos que fuiste tú 💛<br>
+                        ¿Nos escribes desde fuera de México? Con Wise o Remitly puedes enviar directo a esta CLABE.
+                    </p>
+
+                    <div class="aportacion-mensaje">
+                        <h4>¿Quieres felicitar a los novios?</h4>
+                        <p>Déjanos unas palabras. Las vamos a guardar con muchísimo cariño.</p>
+                        <button type="button" class="btn btn-fill" data-toggle="modal" data-target="#mensaje-modal">
+                            <i class="fa fa-envelope-o"></i> Escríbenos un mensaje
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MODAL: MENSAJE A LOS NOVIOS -->
+<div id="mensaje-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+
+                <div id="mensaje-form-wrap">
+                    <h3 class="text-center section-padding">Un mensaje para Pau y Alan</h3>
+                    <div class="form-input-group" style="margin-bottom:10px;">
+                        <i class="fa fa-user"></i>
+                        <input type="text" id="mensaje-nombre" placeholder="Tu nombre" maxlength="100" required>
+                    </div>
+                    <textarea id="mensaje-texto" class="regalo-nota-input" rows="5" maxlength="500"
+                              placeholder="Escríbeles lo que quieras: un buen deseo, un consejo, un recuerdo… 💌"></textarea>
+                    <div id="mensaje-alert"></div>
+                    <button class="btn btn-fill btn-large" id="mensaje-enviar-btn" type="button" style="width:100%; margin-top:10px;">
+                        Enviar mensaje
+                    </button>
+                </div>
+
+                <div id="mensaje-gracias" class="text-center" style="display:none;">
+                    <div class="regalo-check-circle"><i class="fa fa-heart"></i></div>
+                    <h3 style="margin-top:20px;">¡Gracias!</h3>
+                    <p style="color:#888;">Tu mensaje ya les llegó a Pau y Alan. Lo van a leer con mucho cariño.</p>
+                    <button class="btn btn-fill btn-large" type="button" data-dismiss="modal" style="width:100%; margin-top:20px;">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- BOTÓN FLOTANTE DEL CARRITO -->
 <button id="carrito-flotante" class="carrito-flotante" style="display:none;" type="button">
@@ -194,6 +272,6 @@
 <script src="js/vendor/jquery-1.11.2.min.js"
         onerror="document.write('<script src=\'https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js\'><\/script>')"></script>
 <script src="js/vendor/bootstrap.min.js"></script>
-<script src="js/regalos.js?v=20261121b"></script>
+<script src="js/regalos.js?v=20261122m"></script>
 </body>
 </html>
