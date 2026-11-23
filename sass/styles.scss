@@ -2754,3 +2754,15 @@ header .idioma-switcher {
 
   a { color: $accent-color; font-weight: $semibold; text-decoration: underline; }
 }
+
+// Modo Norteño: la sesión norteña reemplaza los carretes de compromiso y Japón
+.solo-norteno { display: none; }
+body.modo-norteno {
+  .solo-norteno { display: block; }
+  .solo-normal { display: none; }
+}
+// Fotos horizontales: cada foto conserva su proporción a la altura del carrete
+.carrete-norteno .carrete-item {
+  width: auto;
+  img { width: auto; }
+}
