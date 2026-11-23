@@ -60,6 +60,8 @@ Abrir los `.html` directo en el navegador; no hace falta servidor.
 - `google-apps-script/test-rsvp.sh` — pipeline de pruebas reales contra el endpoint desplegado (usar solo códigos de prueba desechables).
 
 ### Hojas del Sheet
+> **Invitados** y **Confirmaciones** viven desde 2026-11-23 en un Sheet aparte compartido con la organizadora (`ssInvitados()`, ID en Propiedades del script `INVITADOS_SS_ID`); el resto sigue en "RSVP Boda". Las cols. N–O de Invitados son de la organizadora; el código solo lee A–M.
+
 - **Invitados** — una fila por persona: A Nombre · B Teléfono · C Familia · D Código (del grupo) · E Confirmado · F/G sin uso · H +1 · I Fecha · J Asiste Boda · K Asiste Tornaboda · L +1 Boda · M +1 Tornaboda.
 - **Confirmaciones** — bitácora de RSVPs; col. E "Asiste Boda", F "Asiste Tornaboda".
 - **Regalos** — `ID · Nombre · Descripcion · Foto · Tipo(unico/fondo) · Precio · Meta · Recaudado · Estado · Comprador · Categoria · Link`. "Link" (col. L) sale en la tarjeta como "Link de referencia para chismosos".
