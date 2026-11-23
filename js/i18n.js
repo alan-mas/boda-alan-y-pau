@@ -91,7 +91,7 @@
   }
 
   // Modo Norteño: fotos con texana (el banner cambia por CSS) + botón "Tu canción, mi reina" (mp3 local)
-  var FOTOS_NORTENAS = { 'img/IMG_2317.jpg': 'img/norteno/alan.jpg', 'img/DSD_0214.jpg': 'img/norteno/pau.jpg' };
+  var FOTOS_NORTENAS = { 'img/IMG_2317.jpg': 'img/norteno/alan.jpg?v=2', 'img/DSD_0214.jpg': 'img/norteno/pau.jpg?v=2' };
   function nortenos(si) {
     document.body.classList.toggle('modo-norteno', si);
     Object.keys(FOTOS_NORTENAS).forEach(function (orig) {
