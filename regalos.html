@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.min.css?v=20261122n">
+    <link rel="stylesheet" href="css/styles.min.css?v=20261122p">
     <link rel="stylesheet" href="css/queries.css">
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css"
           onerror="this.href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'">
@@ -51,10 +51,14 @@
                 <a href="#" id="whatsapp-share-btn" class="btn-whatsapp" target="_blank" rel="noopener">
                     <i class="fa fa-whatsapp"></i> Compartir por WhatsApp
                 </a>
-                <p class="aportacion-aviso">
-                    💌 ¿Prefieres hacernos una transferencia o dejarnos un mensaje?
-                    <a href="#aportacion-libre" id="aportacion-aviso-link">Aquí abajo te decimos cómo&nbsp;↓</a>
-                </p>
+                <div class="aportacion-aviso">
+                    <div class="aportacion-aviso__icono" aria-hidden="true"><i class="fa fa-university"></i></div>
+                    <div class="aportacion-aviso__texto">
+                        <strong>¿Prefieres hacernos una transferencia?</strong>
+                        <span>También puedes aportar la cantidad que quieras por transferencia bancaria o dejarnos un mensaje 💌</span>
+                    </div>
+                    <a href="#aportacion-libre" id="aportacion-aviso-link" class="aportacion-aviso__btn">Ver cómo&nbsp;↓</a>
+                </div>
             </div>
         </div>
 
@@ -64,6 +68,7 @@
 
         <div class="row">
             <div class="col-md-6 col-md-offset-3 text-center" id="regalos-buscador-wrap">
+                <i class="fa fa-search regalos-buscador__icono" aria-hidden="true"></i>
                 <input type="search" id="regalos-buscador" placeholder="Busca un regalo… (ej. hotel, vuelo, cena)" aria-label="Buscar regalo" autocomplete="off">
             </div>
         </div>
