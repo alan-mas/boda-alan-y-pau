@@ -2762,7 +2762,22 @@ body.modo-norteno {
   .solo-normal { display: none; }
 }
 // Fotos horizontales: cada foto conserva su proporción a la altura del carrete
+// (alto fijo + ancho máximo de pantalla: la foto siempre se ve completa, también en celular)
 .carrete-norteno .carrete-item {
   width: auto;
-  img { width: auto; }
+  height: auto;
+  img {
+    width: auto;
+    height: auto;
+    max-height: 320px;
+    max-width: calc(100vw - 60px);
+  }
 }
+@media (max-width: 767px) {
+  .carrete-norteno .carrete-item img {
+    max-height: 240px;
+    max-width: calc(100vw - 50px);
+  }
+}
+// Visor (FancyBox): flechas siempre visibles (en celular no hay hover)
+.fancybox-nav span { visibility: visible; opacity: .85; }

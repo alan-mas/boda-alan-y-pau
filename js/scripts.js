@@ -92,7 +92,24 @@ $(document).ready(function () {
     $('.fancybox').fancybox({
         padding: 4,
         width: 1000,
-        height: 800
+        height: 800,
+        loop: true
+    });
+
+    // Deslizar con el dedo en el visor para pasar a la foto siguiente/anterior
+    var toqueX = null, toqueY = null;
+    $(document).on('touchstart', '.fancybox-wrap', function (e) {
+        var t = e.originalEvent.touches[0];
+        toqueX = t.clientX; toqueY = t.clientY;
+    }).on('touchend', '.fancybox-wrap', function (e) {
+        if (toqueX === null) return;
+        var t = e.originalEvent.changedTouches[0],
+            dx = t.clientX - toqueX, dy = t.clientY - toqueY;
+        toqueX = null;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+            e.preventDefault();
+            if (dx < 0) { $.fancybox.next(); } else { $.fancybox.prev(); }
+        }
     });
 
     /***************** Tooltips ******************/
