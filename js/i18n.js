@@ -24,7 +24,7 @@
   };
   var CLAVE = 'boda_idioma';
   var ATRIBUTOS = ['placeholder', 'title', 'aria-label', 'alt'];
-  var VERSION = '20261121';
+  var VERSION = '20261122';
 
   window.I18N_DICT = window.I18N_DICT || {};
   var actual = 'es';
