@@ -1,14 +1,16 @@
 (function () {
   'use strict';
 
-  var MANIFEST_URL = 'img/eng_pics/sesion-completa/manifest.json';
+  // Carpeta de fotos: data-base en #sesion-grid (sesion-japon.html usa
+  // img/japon/sesion/); por defecto, la sesión de compromiso.
   var BASE_URL = 'img/eng_pics/sesion-completa/';
 
   document.addEventListener('DOMContentLoaded', function () {
     var grid = document.getElementById('sesion-grid');
     if (!grid) return;
+    if (grid.dataset.base) BASE_URL = grid.dataset.base;
 
-    fetch(MANIFEST_URL)
+    fetch(BASE_URL + 'manifest.json')
       .then(function (res) { return res.json(); })
       .then(function (nombres) {
         grid.innerHTML = nombres.map(construirTarjeta).join('');

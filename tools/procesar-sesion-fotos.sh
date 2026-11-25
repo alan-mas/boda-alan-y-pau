@@ -5,13 +5,14 @@
 # (ancho 1067px para el lightbox, 333px para el thumbnail). Genera también
 # manifest.json con la lista de fotos para que js/sesion.js arme la galería.
 #
-# Uso: bash tools/procesar-sesion-fotos.sh
+# Uso: bash tools/procesar-sesion-fotos.sh [ORIGEN] [DESTINO]
+#   Japón: bash tools/procesar-sesion-fotos.sh sesion_japon img/japon/sesion
 # Requiere: sips (viene con macOS, no hay que instalar nada).
 
 set -euo pipefail
 
-ORIGEN="img/eng_pics/FULL JPG"
-DESTINO="img/eng_pics/sesion-completa"
+ORIGEN="${1:-img/eng_pics/FULL JPG}"
+DESTINO="${2:-img/eng_pics/sesion-completa}"
 ANCHO_LG=1067
 CALIDAD_LG=70
 ANCHO_SM=333
@@ -28,7 +29,8 @@ nombres=()
 total=$(find "$ORIGEN" -type f -iname "*.jpg" | wc -l | tr -d ' ')
 i=0
 
-for archivo in "$ORIGEN"/*.jpg; do
+# Orden natural (1, 2, … 10) para que los nombres numéricos salgan en orden.
+while IFS= read -r archivo; do
   i=$((i + 1))
   base=$(basename "$archivo" .jpg)
   echo "[$i/$total] $base"
@@ -40,7 +42,7 @@ for archivo in "$ORIGEN"/*.jpg; do
     "$archivo" --out "$DESTINO/${base}-sm.jpg" >/dev/null
 
   nombres+=("\"$base\"")
-done
+done < <(ls "$ORIGEN"/*.jpg | sort -V)
 
 {
   echo "["

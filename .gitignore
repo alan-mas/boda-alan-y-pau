@@ -56,3 +56,7 @@ TODO.md
 LINKS.md
 
 sesion-norteña/
+
+# Fotos originales de la boda en Japón (~3.1GB). El sitio usa las versiones
+# ligeras en img/japon/sesion/ (tools/procesar-sesion-fotos.sh sesion_japon img/japon/sesion).
+sesion_japon/
