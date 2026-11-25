@@ -40,6 +40,15 @@ jobs:
         with:
           path: .
 
+  # Publicar en un job aparte (estructura oficial de Pages): así el paquete
+  # ya está registrado cuando deploy-pages lo busca.
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Publicar en GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
