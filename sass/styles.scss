@@ -2489,6 +2489,13 @@ Ver toda la sesión (sesion-completa.html)
     display: block;
     margin-bottom: 15px;
   }
+  // Todas las miniaturas en vertical (2:3) para que la cuadrícula no quede
+  // chueca con fotos horizontales; el visor muestra la foto completa.
+  img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+  }
 }
 /* ==========================================================================
 Ronda 2026-11-21: botones más visibles, título Eventos centrado, contacto
