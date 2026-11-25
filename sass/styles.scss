@@ -2552,15 +2552,21 @@ Ronda 2026-11-21: botones más visibles, título Eventos centrado, contacto
   .japon-voto-trad { font-style: italic; font-size: 14px; color: $txt-accent; margin-top: 2px; }
   // Voto completo plegado: solo ocupa una línea hasta que lo abren
   .japon-seishi {
-    margin-top: 8px;
+    margin-top: 14px;
     summary {
       cursor: pointer;
       display: inline-block;
       list-style: none;
-      font-size: 13px;
+      font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: $txt-accent;
+      // Pastilla con borde para que se lea como botón
+      color: $accent-color;
+      border: 1px solid $accent-color;
+      border-radius: 30px;
+      padding: 7px 18px;
+      transition: background-color 200ms ease, color 200ms ease;
+      &:hover, &:focus { background-color: $accent-color; color: $white-color; outline: none; }
       &::-webkit-details-marker { display: none; }
       &::after { content: ' +'; }
     }
