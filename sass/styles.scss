@@ -2535,6 +2535,20 @@ Ronda 2026-11-21: botones más visibles, título Eventos centrado, contacto
 }
 
 .japon-fotos { margin-top: 60px; }
+// Brief de la boda sintoísta (arriba del carrete de Japón)
+.japon-brief {
+  max-width: 620px;
+  margin: 0 auto 22px;
+  p { font-size: 15px; line-height: 1.7; margin-bottom: 14px; }
+  .japon-voto {
+    font-size: 20px;
+    letter-spacing: 4px;
+    margin: 18px 0 2px;
+    color: $txt-accent;
+  }
+  .japon-voto-trad { font-style: italic; font-size: 14px; color: $txt-accent; }
+  .japon-lugar { font-size: 13px; letter-spacing: .5px; }
+}
 .japon-msg {
   margin-top: 18px;
   font-size: 17px;
