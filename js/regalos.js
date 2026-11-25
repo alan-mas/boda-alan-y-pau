@@ -648,13 +648,15 @@
   }
   // ── Apartado final: copiar CLABE y mensaje a los novios ──
   document.addEventListener('DOMContentLoaded', function () {
-    var avisoLink = document.getElementById('aportacion-aviso-link');
-    if (avisoLink) {
-      avisoLink.addEventListener('click', function (e) {
+    // Botones de "dos formas de regalar": scroll suave a su sección
+    [['aportacion-aviso-link', 'aportacion-libre'], ['regalo-formas-lista-link', 'regalos-buscador-wrap']].forEach(function (par) {
+      var link = document.getElementById(par[0]);
+      if (!link) return;
+      link.addEventListener('click', function (e) {
         e.preventDefault();
-        document.getElementById('aportacion-libre').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById(par[1]).scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
-    }
+    });
     var copiarBtn = document.getElementById('aportacion-copiar-btn');
     if (copiarBtn) {
       copiarBtn.addEventListener('click', function () {
